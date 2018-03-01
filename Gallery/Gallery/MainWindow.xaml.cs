@@ -23,6 +23,7 @@ namespace Gallery
         public MainWindow()
         {
             InitializeComponent();
+            BtnOpenImage.Background = MyMainWindow.Background;
         }
     }
 }
