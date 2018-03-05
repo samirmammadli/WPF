@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Gallery
 {
@@ -24,6 +26,33 @@ namespace Gallery
         {
             InitializeComponent();
             BtnOpenImage.Background = MyMainWindow.Background;
+        }
+
+        private void AddPicture_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog { IsFolderPicker = true };
+            try
+            {
+                if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
+
+                ImagesPanel.Children.Clear();
+                var loader = new ImageLoader(dialog.FileName, new ImageFilesFilter());
+                foreach (var image in loader.GetImages())
+                {
+                    ImagesPanel.Children.Add(new Button (){ Content = image, Margin = new Thickness(3,3,3,3)});
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            var button = e.Source as Button;
+            if ((button?.Content as Image)?.Source != null)
+                SelectedImage.Source = (button.Content as Image).Source;
         }
     }
 }
