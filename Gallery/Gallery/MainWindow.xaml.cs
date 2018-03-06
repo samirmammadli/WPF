@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,10 +40,42 @@ namespace Gallery
 
                 ImagesPanel.Children.Clear();
                 var loader = new ImageCollectionLoader(dialog.FileName, new ImageFilesFilter());
-                foreach (var image in loader.ImageCollectionDownload())
+                var images = loader.ImageCollectionDownload();
+
+                //////////////////////////////////
+                try
                 {
-                    ImagesPanel.Children.Add(new Button (){ Content = image, Margin = new Thickness(3,3,3,3)});
+                    ProgressManager pm = new ProgressManager();
+                    pm.BeginWaiting();
+                    pm.SetProgressMaxValue(10);
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        pm.ChangeStatus("Loading " + i.ToString() + " from 10");
+                        pm.ChangeProgress(i);
+                        Thread.Sleep(100);
+                    }
+                    pm.EndWaiting();
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    
+                }
+
+                //int i = 0;
+
+
+                //foreach (var image in images)
+                //{
+                //    ImagesPanel.Children.Add(new Button (){ Content = image, Margin = new Thickness(3,3,3,3)});
+                //    pm.ChangeProgress(++i);
+                //    pm.ChangeStatus("Loading " + i.ToString() + $" from {images.Count}");
+
+                //}
+
+
+                /////////////////////////////////
             }
             catch (Exception exception)
             {

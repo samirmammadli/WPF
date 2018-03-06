@@ -49,14 +49,26 @@ namespace Gallery
         }
     }
 
-    static class BitmapRotation
+    static class ImageRotation
     {
-        static public BitmapImage Rotate(Uri uri, Rotation rotation)
+        static public BitmapImage RotateToRight(Uri uri)
         {
             var bi = new BitmapImage();
             bi.BeginInit();
 
-            bi.Rotation = rotation;
+            bi.Rotation = Rotation.Rotate90;
+            bi.UriSource = uri;
+
+            bi.EndInit();
+
+            return bi;
+        }
+        static public BitmapImage RotateToLeft(Uri uri)
+        {
+            var bi = new BitmapImage();
+            bi.BeginInit();
+
+            bi.Rotation = Rotation.Rotate270;
             bi.UriSource = uri;
 
             bi.EndInit();
@@ -67,7 +79,7 @@ namespace Gallery
 
     class ImageCollectionLoader
     {
-        private readonly List<Image> _images;
+        private readonly LinkedList<Image> _images;
         private readonly string _path;
         public FileExtensionFilter Filter { get; set; }
 
@@ -75,7 +87,7 @@ namespace Gallery
         {
             _path = path;
             Filter = filter;
-            _images = new List<Image>();
+            _images = new LinkedList<Image>();
         }
 
         private BitmapImage ImagePreview(Uri uri)
@@ -91,7 +103,7 @@ namespace Gallery
             return image;
         }
 
-        public List<Image> ImageCollectionDownload()
+        public LinkedList<Image> ImageCollectionDownload()
         {
             var folder = new DirectoryInfo(_path);
             var files = folder.GetFiles();
@@ -99,7 +111,7 @@ namespace Gallery
             {
                 if (Filter.CheckExtensionMath(file.FullName))
                 {
-                    _images.Add(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
+                    _images.AddLast(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
                 }
             }
             return _images;
