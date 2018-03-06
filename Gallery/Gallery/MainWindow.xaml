@@ -42,7 +42,7 @@
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
             <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
             <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
-                <Image Name="SelectedImage" Grid.Column="2" Margin="6" Source="C:\Users\Somir\Desktop\eblo.png"/>
+                <Image Name="ImageViewer" Grid.Column="2" Margin="6"/>
             </Border>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -67,10 +67,10 @@
         </Grid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition MaxHeight="25" MinHeight="25"></RowDefinition>
+                <RowDefinition MaxHeight="100" MinHeight="50"></RowDefinition>
             </Grid.RowDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
                 </StackPanel>
             </ScrollViewer>

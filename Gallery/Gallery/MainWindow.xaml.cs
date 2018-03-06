@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,8 @@ namespace Gallery
                 if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
 
                 ImagesPanel.Children.Clear();
-                var loader = new ImageLoader(dialog.FileName, new ImageFilesFilter());
-                foreach (var image in loader.GetImages())
+                var loader = new ImageCollectionLoader(dialog.FileName, new ImageFilesFilter());
+                foreach (var image in loader.ImageCollectionDownload())
                 {
                     ImagesPanel.Children.Add(new Button (){ Content = image, Margin = new Thickness(3,3,3,3)});
                 }
@@ -51,8 +52,17 @@ namespace Gallery
         private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
         {
             var button = e.Source as Button;
-            if ((button?.Content as Image)?.Source != null)
-                SelectedImage.Source = (button.Content as Image).Source;
+            if (button == null || button.Content as Image == null) return;
+
+
+            var fileName = ((button.Content as Image).Source as BitmapImage).UriSource;
+
+
+            ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
+            //ImageViewer.Source = Nese(fileName);
+
         }
+
+        
     }
 }

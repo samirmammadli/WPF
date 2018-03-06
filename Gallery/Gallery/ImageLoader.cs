@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Gallery
         {
             foreach (var ext in FileEtensions)
             {
-                if (filename.EndsWith(ext)) return true;
+                if (filename.EndsWith(ext, true, CultureInfo.CurrentCulture)) return true;
             }
             return false;
         }
@@ -36,20 +37,61 @@ namespace Gallery
         } 
     }
 
-    class ImageLoader
+    static class SingleImageLoader
+    {
+        static public BitmapImage DownloadImage(Uri filename, FileExtensionFilter filter)
+        {
+            if (filter.CheckExtensionMath(filename.ToString()))
+            {
+                return  new BitmapImage (filename);
+            }
+            throw new ArgumentException("Image not found!");
+        }
+    }
+
+    static class BitmapRotation
+    {
+        static public BitmapImage Rotate(Uri uri, Rotation rotation)
+        {
+            var bi = new BitmapImage();
+            bi.BeginInit();
+
+            bi.Rotation = rotation;
+            bi.UriSource = uri;
+
+            bi.EndInit();
+
+            return bi;
+        }
+    }
+
+    class ImageCollectionLoader
     {
         private readonly List<Image> _images;
         private readonly string _path;
         public FileExtensionFilter Filter { get; set; }
 
-        public ImageLoader(string path, FileExtensionFilter filter)
+        public ImageCollectionLoader(string path, FileExtensionFilter filter)
         {
             _path = path;
             Filter = filter;
             _images = new List<Image>();
         }
 
-        public List<Image> GetImages()
+        private BitmapImage ImagePreview(Uri uri)
+        {
+            var image = new BitmapImage();
+
+            image.BeginInit();
+            image.UriSource = uri;
+
+            image.DecodePixelWidth = 200;
+            image.EndInit();
+
+            return image;
+        }
+
+        public List<Image> ImageCollectionDownload()
         {
             var folder = new DirectoryInfo(_path);
             var files = folder.GetFiles();
@@ -57,7 +99,7 @@ namespace Gallery
             {
                 if (Filter.CheckExtensionMath(file.FullName))
                 {
-                    _images.Add(new Image{Source = new BitmapImage(new Uri(file.FullName))});
+                    _images.Add(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
                 }
             }
             return _images;
