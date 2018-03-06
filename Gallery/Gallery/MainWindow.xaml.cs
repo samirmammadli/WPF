@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,40 +43,11 @@ namespace Gallery
                 var loader = new ImageCollectionLoader(dialog.FileName, new ImageFilesFilter());
                 var images = loader.ImageCollectionDownload();
 
-                //////////////////////////////////
-                try
+
+                foreach (var image in images)
                 {
-                    ProgressManager pm = new ProgressManager();
-                    pm.BeginWaiting();
-                    pm.SetProgressMaxValue(10);
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        pm.ChangeStatus("Loading " + i.ToString() + " from 10");
-                        pm.ChangeProgress(i);
-                        Thread.Sleep(100);
-                    }
-                    pm.EndWaiting();
+                    ImagesPanel.Children.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    
-                }
-
-                //int i = 0;
-
-
-                //foreach (var image in images)
-                //{
-                //    ImagesPanel.Children.Add(new Button (){ Content = image, Margin = new Thickness(3,3,3,3)});
-                //    pm.ChangeProgress(++i);
-                //    pm.ChangeStatus("Loading " + i.ToString() + $" from {images.Count}");
-
-                //}
-
-
-                /////////////////////////////////
             }
             catch (Exception exception)
             {
