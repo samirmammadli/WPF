@@ -9,17 +9,24 @@
         Title="MainWindow" Height="600" Width="800"
         MinWidth="600"
         MinHeight="400">
+    <Window.Resources>
+        <!--<ControlTemplate x:Key="MyButton" TargetType="Button">
+            <Border BorderBrush="Black" BorderThickness="2" TextBlock.FontSize="{TemplateBinding FontSize}">
+                
+            </Border>
+        </ControlTemplate>-->
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="300" Height="2*"></RowDefinition>
+            <RowDefinition MinHeight="400" Height="4*"></RowDefinition>
             <RowDefinition Height="4"></RowDefinition>
-            <RowDefinition MinHeight="100" Height="1*"></RowDefinition>
+            <RowDefinition MinHeight="80" Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="100"></ColumnDefinition>
                 <ColumnDefinition Width="3" ></ColumnDefinition>
-                <ColumnDefinition Width="2*" MinWidth="250"></ColumnDefinition>
+                <ColumnDefinition Width="auto" MinWidth="450"></ColumnDefinition>
                 <ColumnDefinition Width="3"></ColumnDefinition>
                 <ColumnDefinition MinWidth="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
