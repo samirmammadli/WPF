@@ -96,7 +96,7 @@ namespace Gallery
 
             image.BeginInit();
             image.UriSource = uri;
-
+            image.CacheOption = BitmapCacheOption.OnLoad;
             image.DecodePixelWidth = 200;
             image.EndInit();
 
