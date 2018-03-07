@@ -53,27 +53,27 @@ namespace Gallery
     {
         static public BitmapImage RotateToRight(Uri uri)
         {
-            var bi = new BitmapImage();
-            bi.BeginInit();
+            var image = new BitmapImage();
+            image.BeginInit();
 
-            bi.Rotation = Rotation.Rotate90;
-            bi.UriSource = uri;
+            image.Rotation = Rotation.Rotate90;
+            image.UriSource = uri;
 
-            bi.EndInit();
+            image.EndInit();
 
-            return bi;
+            return image;
         }
         static public BitmapImage RotateToLeft(Uri uri)
         {
-            var bi = new BitmapImage();
-            bi.BeginInit();
+            var image = new BitmapImage();
+            image.BeginInit();
 
-            bi.Rotation = Rotation.Rotate270;
-            bi.UriSource = uri;
+            image.Rotation = Rotation.Rotate270;
+            image.UriSource = uri;
 
-            bi.EndInit();
+            image.EndInit();
 
-            return bi;
+            return image;
         }
     }
 

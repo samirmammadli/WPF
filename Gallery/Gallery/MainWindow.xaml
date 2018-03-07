@@ -70,7 +70,6 @@
                 <RowDefinition MaxHeight="25" MinHeight="25"></RowDefinition>
                 <RowDefinition MaxHeight="100" MinHeight="50"></RowDefinition>
             </Grid.RowDefinitions>
-            <ProgressBar Name="ImagaLoadProgress" Grid.Row="1" Minimum="0" Visibility="Collapsed"></ProgressBar>
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
                 </StackPanel>

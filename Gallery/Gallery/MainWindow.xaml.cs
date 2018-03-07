@@ -67,8 +67,6 @@ namespace Gallery
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
             //ImageViewer.Source = Nese(fileName);
 
-        }
-
-        
+        }  
     }
 }
