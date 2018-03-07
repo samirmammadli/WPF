@@ -11,11 +11,12 @@
         MinHeight="400"
         Background="#333" ResizeMode="CanResizeWithGrip" WindowState="Maximized">
     <Window.Resources>
-        <!--<ControlTemplate x:Key="MyButton" TargetType="Button">
-            <Border BorderBrush="Black" BorderThickness="2" TextBlock.FontSize="{TemplateBinding FontSize}">
-                
-            </Border>
-        </ControlTemplate>-->
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="./#Quirlycues"/>
+            <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -27,9 +28,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="100"></ColumnDefinition>
                 <ColumnDefinition Width="3"></ColumnDefinition>
-                <ColumnDefinition MinWidth="450"></ColumnDefinition>
+                <ColumnDefinition MinWidth="400"></ColumnDefinition>
                 <ColumnDefinition Width="3"></ColumnDefinition>
-                <ColumnDefinition MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="4">
                 <Grid.RowDefinitions>
@@ -43,9 +44,9 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label>Text</Label>
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" FontSize="18" FontWeight="Bold">Text</Label>
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" FontSize="18" FontWeight="Bold">Text</Label>
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" FontSize="18" FontWeight="Bold">Text</Label>
+                <Label Grid.Column="0" Grid.Row="1">Text</Label>
+                <Label Grid.Column="0" Grid.Row="2">Text</Label>
+                <Label Grid.Column="0" Grid.Row="3">Text</Label>
             </Grid>
             <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
