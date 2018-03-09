@@ -54,24 +54,24 @@
                 <Image Name="ImageViewer" Grid.Column="2" Margin="6"/>
             </Border>
             <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Button Name="BtnOpenImage"
+                <DockPanel>
+                    <GroupBox Header="Images Control" DockPanel.Dock="Bottom">
+                        <Button Name="BtnOpenImage"
                         ToolTip="Open Image Library"
                         BorderThickness="0"
-                        Grid.Row="1"
-                        Margin="10,0,0,0"
+                        Margin="10,0,0,10"
                         HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
                         Width="50" Height="50">
-                    <Button Name="AddPicture"
+                            <Button Name="AddPicture"
                             Click="AddPicture_OnClick"
                             BorderThickness="0"
                             Background="Transparent">
-                        <Image Source="bin/Debug/Icons/loadfile.png"></Image>
-                    </Button>
-                </Button>
+                                <Image Source="bin/Debug/Icons/loadfile.png"></Image>
+                            </Button>
+                        </Button>
+                    </GroupBox>
+                </DockPanel>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
