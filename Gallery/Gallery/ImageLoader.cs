@@ -94,7 +94,7 @@ namespace Gallery
 
     class ImageCollectionLoader
     {
-        private readonly LinkedList<Image> _images;
+        private readonly List<Image> _images;
         private readonly string _path;
         public FileExtensionFilter Filter { get; set; }
 
@@ -102,7 +102,7 @@ namespace Gallery
         {
             _path = path;
             Filter = filter;
-            _images = new LinkedList<Image>();
+            _images = new List<Image>();
         }
 
         private BitmapImage ImagePreview(Uri uri)
@@ -118,7 +118,7 @@ namespace Gallery
             return image;
         }
 
-        public LinkedList<Image> ImageCollectionDownload()
+        public List<Image> ImageCollectionDownload()
         {
             var folder = new DirectoryInfo(_path);
             var files = folder.GetFiles();
@@ -126,7 +126,7 @@ namespace Gallery
             {
                 if (Filter.CheckExtensionMath(file.FullName))
                 {
-                    _images.AddLast(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
+                    _images.Add(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
                 }
             }
             return _images;

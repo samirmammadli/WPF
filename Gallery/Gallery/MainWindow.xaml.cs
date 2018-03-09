@@ -59,8 +59,8 @@ namespace Gallery
                 {
                     ImagesPanel.Children.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
                 }
-                var fileInfo = images.First.Value.Tag as FileInfo;
-                albums.Add(new AlbumInfo(fileInfo.Name, fileInfo.DirectoryName, images.First.Value.Source));
+                var fileInfo = images[0].Tag as FileInfo;
+                albums.Add(new AlbumInfo(fileInfo.Name, fileInfo.DirectoryName, images[0].Source));
                 lbAlboms.Items.Refresh();
             }
             catch (Exception exception)
@@ -90,8 +90,10 @@ namespace Gallery
             try
             {
 
-                MessageBox.Show(lbAlboms.Items.Contains((e.Source as Button).DataContext as AlbumInfo).ToString());
-                lbAlboms.Items.Remove((e.Source as Button).DataContext);
+                MessageBox.Show(albums.Contains((e.Source as Button).DataContext as AlbumInfo).ToString());
+                //lbAlboms.Items.Remove((e.Source as Button).DataContext);
+                albums.Remove((e.Source as Button).DataContext as AlbumInfo);
+                lbAlboms.Items.Refresh();
 
             }
             catch (Exception ex)
