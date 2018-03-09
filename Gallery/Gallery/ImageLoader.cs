@@ -11,6 +11,21 @@ using System.Windows.Media.Imaging;
 
 namespace Gallery
 {
+    class AlbumInfo
+    {
+        public string Name { get; }
+        public string Path { get; }
+        public ImageSource Image { get; }
+
+        public AlbumInfo(string name, string path, ImageSource image)
+        {
+            Name = name;
+            Path = path;
+            Image = image;
+        }
+    }
+
+
     abstract class FileExtensionFilter
     {
         protected string[] FileEtensions { get;  set; }

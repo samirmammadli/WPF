@@ -11,9 +11,49 @@
         MinHeight="600"
         Background="#333" ResizeMode="CanResizeWithGrip" WindowState="Maximized">
     <Window.Resources>
+        <DataTemplate x:Key="AlbumInfo">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.RowSpan="2"
+                        MaxWidth="50"
+                        MaxHeight="50"
+                        BorderThickness="2">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="#FF0D3F87" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Image Source="{Binding Image}"/>
+                </Border>
+                <Label Grid.Column="1" Grid.Row="0" Content="Name: "/>
+                <Label Grid.Column="2" Grid.Row="0" Content="{Binding Name}"/>
+                <Label Grid.Column="1" Grid.Row="1" Content="Path: "/>
+                <Label Grid.Column="2" Grid.Row="1" Content="{Binding Path}"/>
+                <Button Name="Delete"
+                        Content="X"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        Margin="5"
+                        Width="20"
+                        Foreground="Red"
+                        FontWeight="Black"
+                        Click="Delete_Click"
+                        >
+                </Button>
+            </Grid>
+        </DataTemplate>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontFamily" Value="./#Quirlycues"/>
             <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
@@ -58,9 +98,16 @@
                     <RowDefinition/>
                     <RowDefinition MaxHeight="100"/>
                 </Grid.RowDefinitions>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <TextBlock HorizontalAlignment="Center" FontSize="18">Alboms</TextBlock>
+                    </GroupBox.Header>
+                    <ListBox Name="lbAlboms" ItemTemplate="{StaticResource AlbumInfo}">
+                    </ListBox>
+                </GroupBox>
                 <GroupBox Grid.Row="1" >
                     <GroupBox.Header>
-                        <TextBlock HorizontalAlignment="Center">Add Albom or Image</TextBlock>
+                        <TextBlock HorizontalAlignment="Center">Add/Delete Albom or Image</TextBlock>
                     </GroupBox.Header>
                     <Button Name="BtnOpenImage"
                         ToolTip="Open Image Library"

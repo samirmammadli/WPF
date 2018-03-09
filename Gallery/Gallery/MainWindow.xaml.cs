@@ -26,10 +26,21 @@ namespace Gallery
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<AlbumInfo> albums;
         public MainWindow()
         {
             InitializeComponent();
-            BtnOpenImage.Background = MyMainWindow.Background;
+            try
+            {
+                BtnOpenImage.Background = MyMainWindow.Background;
+                albums = new List<AlbumInfo>();
+                lbAlboms.ItemsSource = albums;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void AddPicture_OnClick(object sender, RoutedEventArgs e)
@@ -48,6 +59,9 @@ namespace Gallery
                 {
                     ImagesPanel.Children.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
                 }
+                var fileInfo = images.First.Value.Tag as FileInfo;
+                albums.Add(new AlbumInfo(fileInfo.Name, fileInfo.DirectoryName, images.First.Value.Source));
+                lbAlboms.Items.Refresh();
             }
             catch (Exception exception)
             {
@@ -57,6 +71,7 @@ namespace Gallery
 
         private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
         {
+            
             var button = e.Source as Button;
             if (button == null || button.Content as Image == null) return;
 
@@ -67,6 +82,22 @@ namespace Gallery
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
             //ImageViewer.Source = Nese(fileName);
 
-        }  
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((e.Source as Button).DataContext as AlbumInfo).Name);
+            try
+            {
+
+                MessageBox.Show(lbAlboms.Items.Contains((e.Source as Button).DataContext as AlbumInfo).ToString());
+                lbAlboms.Items.Remove((e.Source as Button).DataContext);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
