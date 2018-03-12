@@ -26,20 +26,50 @@ namespace Gallery
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<AlbumInfo> albums;
+        private List<Albums> albums;
         public MainWindow()
         {
             InitializeComponent();
             try
             {
                 BtnOpenImage.Background = MyMainWindow.Background;
-                albums = new List<AlbumInfo>();
+                albums = new List<Albums>();
                 lbAlboms.ItemsSource = albums;
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private bool CheckAlbumExisting(string path)
+        {
+            foreach (var item in albums)
+            {
+                if (item.Path == path) return true;
+            }
+            return false;
+        }
+
+        private void AddNewAlbom(string albumName, string albumPath, ImageSource image)
+        {
+            albums.Add(new Albums(albumName, albumPath, image));
+        }
+
+        private void AddPicturesToAlbum(int index, Image image)
+        {
+            albums[index].AlbumImages.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
+        }
+
+
+        private void LoadAlbumImagestoViewer(int index)
+        {
+            ImagesPanel.Children.Clear();
+            foreach (var image in albums[index].AlbumImages)
+            {
+                ImagesPanel.Children.Add(image);
             }
         }
 
@@ -50,18 +80,18 @@ namespace Gallery
             {
                 if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
 
-                ImagesPanel.Children.Clear();
                 var loader = new ImageCollectionLoader(dialog.FileName, new ImageFilesFilter());
                 var images = loader.ImageCollectionDownload();
+                var fileInfo = images[0].Tag as FileInfo;
 
-
+                AddNewAlbom(fileInfo.Name, fileInfo.DirectoryName, images[0].Source);
+                int index = albums.Count - 1;
                 foreach (var image in images)
                 {
-                    ImagesPanel.Children.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
+                    AddPicturesToAlbum(index, image);
                 }
-                var fileInfo = images[0].Tag as FileInfo;
-                albums.Add(new AlbumInfo(fileInfo.Name, fileInfo.DirectoryName, images[0].Source));
                 lbAlboms.Items.Refresh();
+                LoadAlbumImagestoViewer(index);
             }
             catch (Exception exception)
             {
@@ -84,15 +114,15 @@ namespace Gallery
 
         }
 
+        
+
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(((e.Source as Button).DataContext as AlbumInfo).Name);
             try
             {
-
-                MessageBox.Show(albums.Contains((e.Source as Button).DataContext as AlbumInfo).ToString());
-                //lbAlboms.Items.Remove((e.Source as Button).DataContext);
-                albums.Remove((e.Source as Button).DataContext as AlbumInfo);
+                var result = MessageBox.Show("Are your sure you want to delete album?", "Delete album", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.No) return;
+                albums.Remove((e.Source as Button).DataContext as Albums);
                 lbAlboms.Items.Refresh();
 
             }

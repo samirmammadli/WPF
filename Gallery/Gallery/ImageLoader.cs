@@ -11,17 +11,19 @@ using System.Windows.Media.Imaging;
 
 namespace Gallery
 {
-    class AlbumInfo
+    class Albums
     {
-        public string Name { get; }
-        public string Path { get; }
-        public ImageSource Image { get; }
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public ImageSource AlbumImage { get; set; }
+        public List<Button> AlbumImages { get; set; }
 
-        public AlbumInfo(string name, string path, ImageSource image)
+        public Albums(string name, string path, ImageSource image)
         {
+            AlbumImages = new List<Button>();
             Name = name;
             Path = path;
-            Image = image;
+            AlbumImage = image;
         }
     }
 
