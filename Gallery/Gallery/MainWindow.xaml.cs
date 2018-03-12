@@ -52,7 +52,8 @@ namespace Gallery
             }
             return false;
         }
-        
+       
+
         private void AddNewAlbom(string albumName, string albumPath, ImageSource image)
         {
             albums.Add(new Albums(albumName, albumPath, image));
@@ -121,6 +122,7 @@ namespace Gallery
             if (button == null || button.Content as Image == null) return;
             var fileName = ((button.Content as Image).Source as BitmapImage).UriSource;
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
+            gridImageInfo.Visibility = Visibility.Visible;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)

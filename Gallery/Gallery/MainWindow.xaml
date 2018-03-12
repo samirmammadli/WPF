@@ -72,7 +72,7 @@
                 <ColumnDefinition Width="3"></ColumnDefinition>
                 <ColumnDefinition MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="4">
+            <Grid Name="gridImageInfo" Visibility="Hidden" Grid.Column="4">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
