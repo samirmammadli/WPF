@@ -83,15 +83,19 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label>Text</Label>
-                <Label Grid.Column="0" Grid.Row="1">Text</Label>
-                <Label Grid.Column="0" Grid.Row="2">Text</Label>
-                <Label Grid.Column="0" Grid.Row="3">Text</Label>
+                <Label Name="lbName" Visibility="Hidden">Name</Label>
+                <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" Visibility="Hidden">Size</Label>
+                <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" Visibility="Hidden">Creation date</Label>
+                <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" Visibility="Hidden">Path</Label>
+                <Label Name="lbNameInfo"  Grid.Column="1" Grid.Row="0"></Label>
+                <Label Name="lbSizeInfo"  Grid.Column="1" Grid.Row="1"></Label>
+                <Label Name="lbCreationDateInfo"  Grid.Column="1" Grid.Row="2"></Label>
+                <Label Name="lbPathInfo"  Grid.Column="1" Grid.Row="3"></Label>
             </Grid>
             <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
-                <Image Name="ImageViewer" Grid.Column="2" Margin="6"/>
+                <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6"/>
             </Border>
             <Grid>
                 <Grid.RowDefinitions>
@@ -116,8 +120,8 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
                         Width="50" Height="50">
-                        <Button Name="AddPicture"
-                            Click="AddPicture_OnClick"
+                        <Button Name="AddAlbum"
+                            Click="AddAlbum_OnClick"
                             BorderThickness="0"
                             Background="Transparent">
                             <Image Source="bin/Debug/Icons/loadfile.png"></Image>

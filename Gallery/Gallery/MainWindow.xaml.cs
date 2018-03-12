@@ -66,12 +66,16 @@ namespace Gallery
         
         private bool CheckIsAlbumSelected(Albums albom)
         {
-            if (ImagesPanel.Children[0] == albom.AlbumImages[0]) return true;
+            int index = lbAlboms.SelectedIndex;
+            if (index < 0) return false;
+            if (ImagesPanel.Children[index] == albom.AlbumImages[0]) return true;
             return false;
         }
 
         private void DeleteAlbum(Albums album)
         {
+            if (CheckIsAlbumSelected(album))
+                ImagesPanel.Children.Clear();
             albums.Remove(album);
             lbAlboms.Items.Refresh();
             
@@ -86,7 +90,7 @@ namespace Gallery
             }
         }
 
-        private void AddPicture_OnClick(object sender, RoutedEventArgs e)
+        private void AddAlbum_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new CommonOpenFileDialog { IsFolderPicker = true };
             try
@@ -113,16 +117,10 @@ namespace Gallery
 
         private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
         {
-            
             var button = e.Source as Button;
             if (button == null || button.Content as Image == null) return;
-
-
             var fileName = ((button.Content as Image).Source as BitmapImage).UriSource;
-
-
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
-
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -143,6 +141,12 @@ namespace Gallery
         {
             if (lbAlboms.SelectedIndex < 0 || lbAlboms.SelectedIndex > albums.Count) return;
             LoadAlbumImagestoViewer(lbAlboms.SelectedIndex);
+        }
+
+
+        private void ImageViewer_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            MessageBox.Show(sender.GetType().ToString());
         }
     }
 }
