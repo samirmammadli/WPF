@@ -52,7 +52,7 @@ namespace Gallery
             }
             return false;
         }
-
+        
         private void AddNewAlbom(string albumName, string albumPath, ImageSource image)
         {
             albums.Add(new Albums(albumName, albumPath, image));
