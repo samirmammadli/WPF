@@ -61,8 +61,21 @@ namespace Gallery
         private void AddPicturesToAlbum(int index, Image image)
         {
             albums[index].AlbumImages.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
+            lbAlboms.Items.Refresh();
+        }
+        
+        private bool CheckIsAlbumSelected(Albums albom)
+        {
+            if (ImagesPanel.Children[0] == albom.AlbumImages[0]) return true;
+            return false;
         }
 
+        private void DeleteAlbum(Albums album)
+        {
+            albums.Remove(album);
+            lbAlboms.Items.Refresh();
+            
+        }
 
         private void LoadAlbumImagestoViewer(int index)
         {
@@ -90,8 +103,7 @@ namespace Gallery
                 {
                     AddPicturesToAlbum(index, image);
                 }
-                lbAlboms.Items.Refresh();
-                LoadAlbumImagestoViewer(index);
+                //LoadAlbumImagestoViewer(index);
             }
             catch (Exception exception)
             {
@@ -110,11 +122,8 @@ namespace Gallery
 
 
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
-            //ImageViewer.Source = Nese(fileName);
 
         }
-
-        
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -122,14 +131,18 @@ namespace Gallery
             {
                 var result = MessageBox.Show("Are your sure you want to delete album?", "Delete album", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No) return;
-                albums.Remove((e.Source as Button).DataContext as Albums);
-                lbAlboms.Items.Refresh();
-
+                DeleteAlbum((e.Source as Button).DataContext as Albums);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void lbAlboms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbAlboms.SelectedIndex < 0 || lbAlboms.SelectedIndex > albums.Count) return;
+            LoadAlbumImagestoViewer(lbAlboms.SelectedIndex);
         }
     }
 }
