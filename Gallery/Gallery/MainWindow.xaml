@@ -72,7 +72,7 @@
                 <ColumnDefinition Width="3"></ColumnDefinition>
                 <ColumnDefinition MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Name="gridImageInfo" Visibility="Hidden" Grid.Column="4">
+            <Grid Name="GridImageInfo" Visibility="Hidden" Grid.Column="4">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -83,10 +83,10 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Name="lbName" Visibility="Hidden">Name</Label>
-                <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" Visibility="Hidden">Size</Label>
-                <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" Visibility="Hidden">Creation date</Label>
-                <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" Visibility="Hidden">Path</Label>
+                <Label Name="lbName">Name</Label>
+                <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size</Label>
+                <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date</Label>
+                <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path</Label>
                 <Label Name="lbNameInfo"  Grid.Column="1" Grid.Row="0"></Label>
                 <Label Name="lbSizeInfo"  Grid.Column="1" Grid.Row="1"></Label>
                 <Label Name="lbCreationDateInfo"  Grid.Column="1" Grid.Row="2"></Label>

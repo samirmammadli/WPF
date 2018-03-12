@@ -119,10 +119,20 @@ namespace Gallery
         private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
         {
             var button = e.Source as Button;
-            if (button == null || button.Content as Image == null) return;
+            if (button == null || !(button.Content is Image)) return;
+            var imageInfo = (button.Content as Image).Tag as FileInfo;
             var fileName = ((button.Content as Image).Source as BitmapImage).UriSource;
             ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
-            gridImageInfo.Visibility = Visibility.Visible;
+
+            if (ImageViewer.Source == null) return;
+            GridImageInfo.Visibility = Visibility.Visible;
+            lbNameInfo.Content = imageInfo.Name;
+            lbSizeInfo.Content = imageInfo.Length + " Bytes";
+            lbPathInfo.Content = imageInfo.FullName;
+            lbCreationDateInfo.Content = imageInfo.CreationTime;
+
+
+
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
