@@ -72,26 +72,32 @@
                 <ColumnDefinition Width="3"></ColumnDefinition>
                 <ColumnDefinition MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Name="GridImageInfo" Visibility="Hidden" Grid.Column="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Name="lbName">Name</Label>
-                <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size</Label>
-                <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date</Label>
-                <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path</Label>
-                <Label Name="lbNameInfo"  Grid.Column="1" Grid.Row="0"></Label>
-                <Label Name="lbSizeInfo"  Grid.Column="1" Grid.Row="1"></Label>
-                <Label Name="lbCreationDateInfo"  Grid.Column="1" Grid.Row="2"></Label>
-                <Label Name="lbPathInfo"  Grid.Column="1" Grid.Row="3"></Label>
-            </Grid>
+            <GroupBox Grid.Column="4">
+                <GroupBox.Header>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
+                </GroupBox.Header>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="GridImageInfo" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Name="lbName">Name:</Label>
+                            <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size:</Label>
+                            <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date:</Label>
+                            <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path:</Label>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Label Name ="lbNameInfo">sadasg</Label>
+                            <Label Name ="lbSizeInfo">sadasg</Label>
+                            <Label Name ="lbCreationDateInfo">sadasg</Label>
+                            <Label Name ="lbPathInfo">sadasg</Label>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </GroupBox>
+            
             <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">

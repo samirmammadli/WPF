@@ -131,8 +131,6 @@ namespace Gallery
             lbPathInfo.Content = imageInfo.FullName;
             lbCreationDateInfo.Content = imageInfo.CreationTime;
 
-
-
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
