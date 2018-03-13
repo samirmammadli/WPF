@@ -60,13 +60,9 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <!--<RowDefinition MinHeight="400" Height="4*"></RowDefinition>
-            <RowDefinition Height="4"></RowDefinition>
-            <RowDefinition MinHeight="80" Height="1*"></RowDefinition>-->
             <RowDefinition Height="4*"/>
             <RowDefinition MinHeight="30" MaxHeight="50"/>
             <RowDefinition Height="1*" MinHeight="50" MaxHeight="100"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="100"></ColumnDefinition>
@@ -76,42 +72,42 @@
             <ColumnDefinition MinWidth="150"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
-            <Button Margin="5">OK</Button>
-            <Button Margin="5">OK</Button>
-            <Button Margin="5">OK</Button>
-            <Button Margin="5">OK</Button>
-            <Button Margin="5">OK</Button>
+            <Button Name="btnRotateLeft" Margin="5">OK</Button>
+            <Button Name="btnPrevious" Margin="5">OK</Button>
+            <Button Name="btnPlay" Margin="5">OK</Button>
+            <Button Name="btnNex" Click="btnNex_Click" Margin="5">OK</Button>
+            <Button Name="btnRotateRight"  Margin="5">OK</Button>
         </WrapPanel>
         <GroupBox Grid.Column="4">
-                <GroupBox.Header>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
-                </GroupBox.Header>
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                    <Grid Name="GridImageInfo" Visibility="Hidden">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                            <Label Name="lbName">Name:</Label>
-                            <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size:</Label>
-                            <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date:</Label>
-                            <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path:</Label>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <Label Name ="lbNameInfo">sadasg</Label>
-                            <Label Name ="lbSizeInfo">sadasg</Label>
-                            <Label Name ="lbCreationDateInfo">sadasg</Label>
-                            <Label Name ="lbPathInfo">sadasg</Label>
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
-            </GroupBox>
-            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-            <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-            <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
-                <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6"/>
-            </Border>
+            <GroupBox.Header>
+                <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
+            </GroupBox.Header>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <Grid Name="GridImageInfo" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                        <Label Name="lbName">Name:</Label>
+                        <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size:</Label>
+                        <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date:</Label>
+                        <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path:</Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbNameInfo"></TextBox>
+                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbSizeInfo"></TextBox>
+                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbCreationDateInfo"></TextBox>
+                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbPathInfo"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </GroupBox>
+        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+        <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+        <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
+            <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6"/>
+        </Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -119,7 +115,7 @@
             </Grid.RowDefinitions>
             <GroupBox>
                 <GroupBox.Header>
-                    <TextBlock HorizontalAlignment="Center" FontSize="18">Alboms</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="18">Albums</TextBlock>
                 </GroupBox.Header>
                 <ListBox Name="lbAlboms" SelectionChanged="lbAlboms_SelectionChanged" ItemTemplate="{StaticResource AlbumInfo}">
                 </ListBox>
@@ -144,13 +140,10 @@
                 </Button>
             </GroupBox>
         </Grid>
-        <!--<Button  Width="40" Height="25"></Button>
-            <Button  Width="40" Height="25"></Button>
-            <Button  Width="40" Height="25"></Button>-->
-            <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>
 

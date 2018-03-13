@@ -93,6 +93,9 @@ namespace Gallery
 
         private void AddAlbum_OnClick(object sender, RoutedEventArgs e)
         {
+            var window = new AlbumName { Owner = this };
+            var name = window.ShowAlbumNameDialog();
+            if (name == string.Empty) return;
             var dialog = new CommonOpenFileDialog { IsFolderPicker = true };
             try
             {
@@ -102,7 +105,7 @@ namespace Gallery
                 var images = loader.ImageCollectionDownload();
                 var fileInfo = images[0].Tag as FileInfo;
 
-                AddNewAlbom(fileInfo.Name, fileInfo.DirectoryName, images[0].Source);
+                AddNewAlbom(name, fileInfo.DirectoryName, images[0].Source);
                 int index = albums.Count - 1;
                 foreach (var image in images)
                 {
@@ -126,10 +129,10 @@ namespace Gallery
 
             if (ImageViewer.Source == null) return;
             GridImageInfo.Visibility = Visibility.Visible;
-            lbNameInfo.Content = imageInfo.Name;
-            lbSizeInfo.Content = imageInfo.Length + " Bytes";
-            lbPathInfo.Content = imageInfo.FullName;
-            lbCreationDateInfo.Content = imageInfo.CreationTime;
+            lbNameInfo.Text = imageInfo.Name;
+            lbSizeInfo.Text = SizeCalculating.Calculate(imageInfo.Length);
+            lbPathInfo.Text = imageInfo.Directory.FullName;
+            lbCreationDateInfo.Text = imageInfo.CreationTime.ToString();
 
         }
 
@@ -157,6 +160,11 @@ namespace Gallery
         private void ImageViewer_SourceUpdated(object sender, DataTransferEventArgs e)
         {
             MessageBox.Show(sender.GetType().ToString());
+        }
+
+        private void btnNex_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
