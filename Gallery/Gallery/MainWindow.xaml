@@ -60,19 +60,29 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="400" Height="4*"></RowDefinition>
+            <!--<RowDefinition MinHeight="400" Height="4*"></RowDefinition>
             <RowDefinition Height="4"></RowDefinition>
-            <RowDefinition MinHeight="80" Height="1*"></RowDefinition>
+            <RowDefinition MinHeight="80" Height="1*"></RowDefinition>-->
+            <RowDefinition Height="4*"/>
+            <RowDefinition MinHeight="30" MaxHeight="50"/>
+            <RowDefinition Height="1*" MinHeight="50" MaxHeight="100"/>
+
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="100"></ColumnDefinition>
-                <ColumnDefinition Width="3"></ColumnDefinition>
-                <ColumnDefinition MinWidth="400"></ColumnDefinition>
-                <ColumnDefinition Width="3"></ColumnDefinition>
-                <ColumnDefinition MinWidth="150"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <GroupBox Grid.Column="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100"></ColumnDefinition>
+            <ColumnDefinition Width="3"></ColumnDefinition>
+            <ColumnDefinition MinWidth="400"></ColumnDefinition>
+            <ColumnDefinition Width="3"></ColumnDefinition>
+            <ColumnDefinition MinWidth="150"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
+            <Button Margin="5">OK</Button>
+            <Button Margin="5">OK</Button>
+            <Button Margin="5">OK</Button>
+            <Button Margin="5">OK</Button>
+            <Button Margin="5">OK</Button>
+        </WrapPanel>
+        <GroupBox Grid.Column="4">
                 <GroupBox.Header>
                     <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
                 </GroupBox.Header>
@@ -97,57 +107,50 @@
                     </Grid>
                 </ScrollViewer>
             </GroupBox>
-            
             <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
             <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
                 <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6"/>
             </Border>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition MaxHeight="100"/>
-                </Grid.RowDefinitions>
-                <GroupBox>
-                    <GroupBox.Header>
-                        <TextBlock HorizontalAlignment="Center" FontSize="18">Alboms</TextBlock>
-                    </GroupBox.Header>
-                    <ListBox Name="lbAlboms" SelectionChanged="lbAlboms_SelectionChanged" ItemTemplate="{StaticResource AlbumInfo}">
-                    </ListBox>
-                </GroupBox>
-                <GroupBox Grid.Row="1" >
-                    <GroupBox.Header>
-                        <TextBlock HorizontalAlignment="Center">Add/Delete Albom or Image</TextBlock>
-                    </GroupBox.Header>
-                    <Button Name="BtnOpenImage"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition MaxHeight="100"/>
+            </Grid.RowDefinitions>
+            <GroupBox>
+                <GroupBox.Header>
+                    <TextBlock HorizontalAlignment="Center" FontSize="18">Alboms</TextBlock>
+                </GroupBox.Header>
+                <ListBox Name="lbAlboms" SelectionChanged="lbAlboms_SelectionChanged" ItemTemplate="{StaticResource AlbumInfo}">
+                </ListBox>
+            </GroupBox>
+            <GroupBox Grid.Row="1" >
+                <GroupBox.Header>
+                    <TextBlock HorizontalAlignment="Center">Add/Delete Albom or Image</TextBlock>
+                </GroupBox.Header>
+                <Button Name="BtnOpenImage"
                         ToolTip="Open Image Library"
                         BorderThickness="0"
                         Margin="10,0,0,10"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
                         Width="50" Height="50">
-                        <Button Name="AddAlbum"
+                    <Button Name="AddAlbum"
                             Click="AddAlbum_OnClick"
                             BorderThickness="0"
                             Background="Transparent">
-                            <Image Source="bin/Debug/Icons/loadfile.png"></Image>
-                        </Button>
+                        <Image Source="bin/Debug/Icons/loadfile.png"></Image>
                     </Button>
-                </GroupBox>
-            </Grid>
+                </Button>
+            </GroupBox>
         </Grid>
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="25" MinHeight="25"></RowDefinition>
-                <RowDefinition MaxHeight="100" MinHeight="50"></RowDefinition>
-            </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <!--<Button  Width="40" Height="25"></Button>
+            <Button  Width="40" Height="25"></Button>
+            <Button  Width="40" Height="25"></Button>-->
+            <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <GridSplitter Grid.Row="1"
-                      HorizontalAlignment="Stretch"></GridSplitter>
-    </Grid>
 </Window>
 
