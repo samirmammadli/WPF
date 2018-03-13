@@ -22,7 +22,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Center" FontSize="12">Album name:</Label>
-        <TextBox VerticalAlignment="Top" Name="tbName" Grid.Row="1" Height="30"></TextBox>
+        <TextBox KeyDown="tbName_KeyDown" VerticalAlignment="Top" Name="tbName" Grid.Row="1" Height="30"></TextBox>
         <WrapPanel Grid.Row="2" ItemHeight="35" ItemWidth="60">
             <Button Name="btnOk" Click="btnOk_Click" Margin="5">OK</Button>
             <Button Name="btnCancel" Click="btnCancel_Click" Margin="5">Cancel</Button>

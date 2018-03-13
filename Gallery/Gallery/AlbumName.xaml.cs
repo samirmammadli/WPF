@@ -43,5 +43,11 @@ namespace Gallery
             tbName.Text = string.Empty;
             Close();
         }
+
+        private void tbName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                btnOk_Click(sender, null);
+        }
     }
 }
