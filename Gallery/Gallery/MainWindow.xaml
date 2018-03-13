@@ -103,8 +103,8 @@
                 </Grid>
             </ScrollViewer>
         </GroupBox>
-        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <GridSplitter Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+        <GridSplitter Grid.Row="0" Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+        <GridSplitter Grid.Row="0" Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
         <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
             <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6"/>
         </Border>

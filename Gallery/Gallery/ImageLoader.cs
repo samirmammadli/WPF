@@ -131,7 +131,6 @@ namespace Gallery
             image.CacheOption = BitmapCacheOption.OnLoad;
             image.DecodePixelWidth = 200;
             image.EndInit();
-
             return image;
         }
 
