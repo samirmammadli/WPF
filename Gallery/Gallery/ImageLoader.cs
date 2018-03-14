@@ -6,42 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Gallery
 {
-    static class SizeCalculating
-    {
-        static public string Calculate(double size)
-        {
-            string output = $"{size} Bytes";
-            if (size >= 1000)
-                output = $"{(size /= 1000).ToString("0.##")} KB";
-            if (size >= 1000)
-                output = $"{(size /= 1000).ToString("0.##")} MB";
-            if (size >= 1000)
-                output = $"{(size /= 1000).ToString("0.##")} GB";
-            return output;
-        }
-    }
-
-    class Albums
-    {
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public ImageSource AlbumImage { get; set; }
-        public List<Button> AlbumImages { get; set; }
-
-        public Albums(string name, string path, ImageSource image)
-        {
-            AlbumImages = new List<Button>();
-            Name = name;
-            Path = path;
-            AlbumImage = image;
-        }
-    }
-
 
     abstract class FileExtensionFilter
     {
@@ -83,25 +51,26 @@ namespace Gallery
 
     static class ImageRotation
     {
-        static public BitmapImage RotateToRight(Uri uri)
+        static public BitmapImage RotateToRight(string path)
         {
             var image = new BitmapImage();
             image.BeginInit();
 
             image.Rotation = Rotation.Rotate90;
-            image.UriSource = uri;
+            image.UriSource = new Uri(path);
 
             image.EndInit();
 
             return image;
         }
-        static public BitmapImage RotateToLeft(Uri uri)
+
+        static public BitmapImage RotateToLeft(string path)
         {
             var image = new BitmapImage();
             image.BeginInit();
 
             image.Rotation = Rotation.Rotate270;
-            image.UriSource = uri;
+            image.UriSource = new Uri(path);
 
             image.EndInit();
 

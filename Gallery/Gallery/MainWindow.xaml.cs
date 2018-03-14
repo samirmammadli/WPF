@@ -166,5 +166,21 @@ namespace Gallery
         {
 
         }
+
+        private void btnRotateRight_Click(object sender, RoutedEventArgs e)
+        {
+            //ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
+            //MessageBox.Show(ImageViewer.Source.ToString());
+            var img = (ImageViewer.Source as BitmapImage);
+            MessageBox.Show(img.ToString());
+            img.BeginInit();
+            //img.Rotation = Rotation.Rotate180;
+            img.EndInit();
+        }
+
+        private void btnRotateLeft_Click(object sender, RoutedEventArgs e)
+        {
+            ImageViewer.Source = ImageRotation.RotateToLeft(ImageViewer.Source.ToString());
+        }
     }
 }

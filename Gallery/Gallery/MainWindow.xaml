@@ -72,11 +72,11 @@
             <ColumnDefinition MinWidth="150"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
-            <Button Name="btnRotateLeft" Margin="5">OK</Button>
+            <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5">OK</Button>
             <Button Name="btnPrevious" Margin="5">OK</Button>
             <Button Name="btnPlay" Margin="5">OK</Button>
             <Button Name="btnNex" Click="btnNex_Click" Margin="5">OK</Button>
-            <Button Name="btnRotateRight"  Margin="5">OK</Button>
+            <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5">OK</Button>
         </WrapPanel>
         <GroupBox Grid.Column="4">
             <GroupBox.Header>

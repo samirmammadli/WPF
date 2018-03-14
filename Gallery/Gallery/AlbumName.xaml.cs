@@ -19,9 +19,12 @@ namespace Gallery
     /// </summary>
     public partial class AlbumName : Window
     {
+        private bool Cancel = true;
+
         public AlbumName()
         {
             InitializeComponent();
+            tbName.Focus();
         }
 
         public string ShowAlbumNameDialog()
@@ -35,12 +38,11 @@ namespace Gallery
             if (tbName.Text == string.Empty)
                 MessageBox.Show("Album name can not be empty!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             else
-                Close();
+            { Cancel = false; Close(); }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            tbName.Text = string.Empty;
             Close();
         }
 
@@ -48,6 +50,11 @@ namespace Gallery
         {
             if (e.Key == Key.Enter)
                 btnOk_Click(sender, null);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Cancel) tbName.Text = string.Empty;
         }
     }
 }

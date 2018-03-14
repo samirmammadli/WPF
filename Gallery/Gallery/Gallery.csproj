@@ -81,6 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Albums.cs" />
+    <Compile Include="SizeCalculating.cs" />
     <Page Include="AlbumName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
