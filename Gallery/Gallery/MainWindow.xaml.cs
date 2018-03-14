@@ -111,7 +111,6 @@ namespace Gallery
                 {
                     AddPicturesToAlbum(index, image);
                 }
-                //LoadAlbumImagestoViewer(index);
             }
             catch (Exception exception)
             {
@@ -169,18 +168,45 @@ namespace Gallery
 
         private void btnRotateRight_Click(object sender, RoutedEventArgs e)
         {
-            //ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
-            //MessageBox.Show(ImageViewer.Source.ToString());
-            var img = (ImageViewer.Source as BitmapImage);
-            MessageBox.Show(img.ToString());
-            img.BeginInit();
-            //img.Rotation = Rotation.Rotate180;
-            img.EndInit();
+            try
+            {
+                //ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
+                var img = ImageViewer.Source as BitmapImage;
+                img.Save(img.UriSource.LocalPath);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnRotateLeft_Click(object sender, RoutedEventArgs e)
         {
             ImageViewer.Source = ImageRotation.RotateToLeft(ImageViewer.Source.ToString());
         }
+
+        
     }
+
+    static class Saver
+    {
+        static private BitmapEncoder GetEncoder()
+        {
+            return new BmpBitmapEncoder();
+        }
+
+        public static void Save(this BitmapImage image, string filePath)
+        {
+            var encoder = new BmpBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                encoder.Save(fileStream);
+            }
+        }
+    }
+    
 }

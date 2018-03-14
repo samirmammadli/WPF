@@ -43,7 +43,13 @@ namespace Gallery
         {
             if (filter.CheckExtensionMath(filename.ToString()))
             {
-                return  new BitmapImage (filename);
+                var image = new BitmapImage();
+
+                image.BeginInit();
+                image.UriSource = filename;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                return image;
             }
             throw new ArgumentException("Image not found!");
         }
@@ -98,7 +104,7 @@ namespace Gallery
             image.BeginInit();
             image.UriSource = uri;
             image.CacheOption = BitmapCacheOption.OnLoad;
-            image.DecodePixelWidth = 200;
+            image.DecodePixelWidth = 100;
             image.EndInit();
             return image;
         }
