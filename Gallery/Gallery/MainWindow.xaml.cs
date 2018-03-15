@@ -16,17 +16,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Gallery
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private List<Albums> albums;
+        private int currentIndex = -1;
+        private DispatcherTimer timer;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +35,10 @@ namespace Gallery
                 BtnOpenImage.Background = MyMainWindow.Background;
                 albums = new List<Albums>();
                 lbAlboms.ItemsSource = albums;
+                timer = new DispatcherTimer();
+                timer.Tick += Timer_Tick;
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
             }
             catch (Exception ex)
             {
@@ -43,6 +47,10 @@ namespace Gallery
             }
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Salam");
+        }
 
         private bool CheckAlbumExisting(string path)
         {
@@ -77,13 +85,16 @@ namespace Gallery
         private void DeleteAlbum(Albums album)
         {
             if (CheckIsAlbumSelected(album))
+            {
                 ImagesPanel.Children.Clear();
+                currentIndex = -1;
+            }
             albums.Remove(album);
             lbAlboms.Items.Refresh();
             
         }
 
-        private void LoadAlbumImagestoViewer(int index)
+        private void LoadAlbumImagestoImagesList(int index)
         {
             ImagesPanel.Children.Clear();
             foreach (var image in albums[index].AlbumImages)
@@ -94,9 +105,7 @@ namespace Gallery
 
         private void AddAlbum_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new AlbumName { Owner = this };
-            var name = window.ShowAlbumNameDialog();
-            if (name == string.Empty) return;
+            
             var dialog = new CommonOpenFileDialog { IsFolderPicker = true };
             try
             {
@@ -105,6 +114,10 @@ namespace Gallery
                 var loader = new ImageCollectionLoader(dialog.FileName, new ImageFilesFilter());
                 var images = loader.ImageCollectionDownload();
                 var fileInfo = images[0].Tag as FileInfo;
+
+                var window = new AlbumName { Owner = this };
+                var name = window.ShowAlbumNameDialog();
+                if (name == string.Empty) return;
 
                 AddNewAlbom(name, fileInfo.DirectoryName, images[0].Source);
                 int index = albums.Count - 1;
@@ -121,20 +134,33 @@ namespace Gallery
 
         private void ImagesPanel_OnClick(object sender, RoutedEventArgs e)
         {
-            var button = e.Source as Button;
-            if (button == null || !(button.Content is Image)) return;
-            var imageInfo = (button.Content as Image).Tag as FileInfo;
-            var fileName = ((button.Content as Image).Source as BitmapImage).UriSource;
-            ImageViewer.Source = SingleImageLoader.DownloadImage(fileName, new ImageFilesFilter());
+            var image = GetSelectedImage(e);
+            var imageInfo = image.Tag as FileInfo;
+            var fileName = (image.Source as BitmapImage).UriSource;
+            LoadViewerImage(fileName, imageInfo);
+            
 
-            if (ImageViewer.Source == null) return;
+        }
+
+        private Image GetSelectedImage(RoutedEventArgs e)
+        {
+            var button = e.Source as Button;
+            currentIndex = ImagesPanel.Children.IndexOf(button);
+            if (button == null || !(button.Content is Image)) throw new ArgumentException("Not found!");
+            var image = (button.Content as Image);
+            return image;
+        }
+
+        private void LoadViewerImage(Uri path, FileInfo imageInfo)
+        {
+            ImageViewer.Source = SingleImageLoader.DownloadImage(path, new ImageFilesFilter());
             GridImageInfo.Visibility = Visibility.Visible;
             lbNameInfo.Text = imageInfo.Name;
             lbSizeInfo.Text = SizeCalculating.Calculate(imageInfo.Length);
             lbPathInfo.Text = imageInfo.Directory.FullName;
             lbCreationDateInfo.Text = imageInfo.CreationTime.ToString();
-
         }
+
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -153,7 +179,7 @@ namespace Gallery
         private void lbAlboms_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lbAlboms.SelectedIndex < 0 || lbAlboms.SelectedIndex > albums.Count) return;
-            LoadAlbumImagestoViewer(lbAlboms.SelectedIndex);
+            LoadAlbumImagestoImagesList(lbAlboms.SelectedIndex);
         }
 
 
@@ -164,7 +190,20 @@ namespace Gallery
 
         private void btnNex_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (ImagesPanel.Children == null) return;
+                if (currentIndex + 1 >= ImagesPanel.Children.Count || currentIndex == -1) return;
+                var image = (ImagesPanel.Children[++currentIndex] as Button).Content as Image;
+                var source = (image.Source as BitmapImage).UriSource;
+                var info = image.Tag as FileInfo;
+                LoadViewerImage(source, info);
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnRotateRight_Click(object sender, RoutedEventArgs e)
@@ -180,7 +219,6 @@ namespace Gallery
 
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void btnRotateLeft_Click(object sender, RoutedEventArgs e)
@@ -190,34 +228,33 @@ namespace Gallery
             img.Save(img.UriSource.LocalPath);
         }
 
-        
-    }
-
-    static class Saver
-    {
-        static private BitmapEncoder GetEncoder(string file, FileExtensionFilter filter)
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            var encoderType = filter.CheckExtensionMath(file);
-            if (encoderType == ".gif")
-                return new GifBitmapEncoder();
-            else if(encoderType == ".bmp")
-                return new BmpBitmapEncoder();
-            else if (encoderType == ".png")
-                return new PngBitmapEncoder();
-            else
-                return new JpegBitmapEncoder();
-        }
-        
-        public static void Save(this BitmapImage image, string filePath)
-        {
-            var encoder = GetEncoder(filePath, new ImageFilesFilter());
-            encoder.Frames.Add(BitmapFrame.Create(image));
-
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            try
             {
-                encoder.Save(fileStream);
+                if (ImagesPanel.Children == null) return;
+                if (currentIndex - 1 < 0) return;
+                var image = (ImagesPanel.Children[--currentIndex] as Button).Content as Image;
+                var source = (image.Source as BitmapImage).UriSource;
+                var info = image.Tag as FileInfo;
+                LoadViewerImage(source, info);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
         }
-    }
-    
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }    
 }

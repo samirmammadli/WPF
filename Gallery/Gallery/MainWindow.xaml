@@ -58,92 +58,99 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition MinHeight="30" MaxHeight="50"/>
-            <RowDefinition Height="1*" MinHeight="50" MaxHeight="100"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="100"></ColumnDefinition>
-            <ColumnDefinition Width="3"></ColumnDefinition>
-            <ColumnDefinition MinWidth="400"></ColumnDefinition>
-            <ColumnDefinition Width="3"></ColumnDefinition>
-            <ColumnDefinition MinWidth="150"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
-            <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5">OK</Button>
-            <Button Name="btnPrevious" Margin="5">OK</Button>
-            <Button Name="btnPlay" Margin="5">OK</Button>
-            <Button Name="btnNex" Click="btnNex_Click" Margin="5">OK</Button>
-            <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5">OK</Button>
-        </WrapPanel>
-        <GroupBox Grid.Column="4">
-            <GroupBox.Header>
-                <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
-            </GroupBox.Header>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                <Grid Name="GridImageInfo" Visibility="Hidden">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="3*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                        <Label Name="lbName">Name:</Label>
-                        <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size:</Label>
-                        <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date:</Label>
-                        <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path:</Label>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbNameInfo"></TextBox>
-                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbSizeInfo"></TextBox>
-                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbCreationDateInfo"></TextBox>
-                        <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbPathInfo"></TextBox>
-                    </StackPanel>
-                </Grid>
-            </ScrollViewer>
-        </GroupBox>
-        <GridSplitter Grid.Row="0" Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <GridSplitter Grid.Row="0" Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
-        <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
-            <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6" RenderTransformOrigin="0.5,0.5"/>
-        </Border>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Slide Show">
+                <MenuItem Header="Set Timer" Click="MenuItem_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition MaxHeight="100"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition MinHeight="30" MaxHeight="50"/>
+                <RowDefinition Height="1*" MinHeight="50" MaxHeight="100"/>
             </Grid.RowDefinitions>
-            <GroupBox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="3"></ColumnDefinition>
+                <ColumnDefinition MinWidth="400"></ColumnDefinition>
+                <ColumnDefinition Width="3"></ColumnDefinition>
+                <ColumnDefinition MinWidth="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
+                <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5">OK</Button>
+                <Button Name="btnPrevious" Click="btnPrevious_Click" Margin="5">OK</Button>
+                <ToggleButton Name="btnPlay" Click="btnPlay_Click" Margin="5">OK</ToggleButton>
+                <Button Name="btnNex" Click="btnNex_Click" Margin="5">OK</Button>
+                <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5">OK</Button>
+            </WrapPanel>
+            <GroupBox Grid.Column="4">
                 <GroupBox.Header>
-                    <TextBlock HorizontalAlignment="Center" FontSize="18">Albums</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16">Image Information</TextBlock>
                 </GroupBox.Header>
-                <ListBox Name="lbAlboms" SelectionChanged="lbAlboms_SelectionChanged" ItemTemplate="{StaticResource AlbumInfo}">
-                </ListBox>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="GridImageInfo" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
+                            <Label Name="lbName">Name:</Label>
+                            <Label Name="lbSize"  Grid.Column="0" Grid.Row="1" >Size:</Label>
+                            <Label Name="lbCreationDate"  Grid.Column="0" Grid.Row="2" >Creation date:</Label>
+                            <Label Name="lbPath"  Grid.Column="0" Grid.Row="3" >Path:</Label>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbNameInfo"></TextBox>
+                            <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbSizeInfo"></TextBox>
+                            <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbCreationDateInfo"></TextBox>
+                            <TextBox Foreground="#FFEFCF38" IsReadOnly="True" Name ="lbPathInfo"></TextBox>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
             </GroupBox>
-            <GroupBox Grid.Row="1" >
-                <GroupBox.Header>
-                    <TextBlock HorizontalAlignment="Center">Add/Delete Albom or Image</TextBlock>
-                </GroupBox.Header>
-                <Button Name="BtnOpenImage"
+            <GridSplitter Grid.Row="0" Grid.Column="1" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+            <GridSplitter Grid.Row="0" Grid.Column="3" Width="3" HorizontalAlignment="Stretch"></GridSplitter>
+            <Border Grid.Column="2" BorderBrush="#FF034972" BorderThickness="3">
+                <Image Name="ImageViewer" SourceUpdated="ImageViewer_SourceUpdated" Grid.Column="2" Margin="6" RenderTransformOrigin="0.5,0.5"/>
+            </Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition MaxHeight="100"/>
+                </Grid.RowDefinitions>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <TextBlock HorizontalAlignment="Center" FontSize="18">Albums</TextBlock>
+                    </GroupBox.Header>
+                    <ListBox Name="lbAlboms" SelectionChanged="lbAlboms_SelectionChanged" ItemTemplate="{StaticResource AlbumInfo}">
+                    </ListBox>
+                </GroupBox>
+                <GroupBox Grid.Row="1" >
+                    <GroupBox.Header>
+                        <TextBlock HorizontalAlignment="Center">Add/Delete Albom or Image</TextBlock>
+                    </GroupBox.Header>
+                    <Button Name="BtnOpenImage"
                         ToolTip="Open Image Library"
                         BorderThickness="0"
                         Margin="10,0,0,10"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
                         Width="50" Height="50">
-                    <Button Name="AddAlbum"
+                        <Button Name="AddAlbum"
                             Click="AddAlbum_OnClick"
                             BorderThickness="0"
                             Background="Transparent">
-                        <Image Source="bin/Debug/Icons/loadfile.png"></Image>
+                            <Image Source="bin/Debug/Icons/loadfile.png"></Image>
+                        </Button>
                     </Button>
-                </Button>
-            </GroupBox>
+                </GroupBox>
+            </Grid>
+            <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
-        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <StackPanel ButtonBase.Click ="ImagesPanel_OnClick"  Name = "ImagesPanel" Orientation="Horizontal">
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </Window>
 
