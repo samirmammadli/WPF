@@ -57,12 +57,12 @@ namespace Gallery
             try
             {
                 var regex = new Regex("[0-9]{1}");
-                if (!regex.IsMatch(tbValue.Text))
-                {
-                    e.
-                    tbValue.Undo();
+                //if (!regex.IsMatch(tbValue.Text))
+                //{
+                //    e.
+                //    tbValue.Undo();
 
-                }
+                //}
             }
             catch (Exception ex)
             {
