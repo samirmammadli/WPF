@@ -254,7 +254,8 @@ namespace Gallery
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            var dialog = new SetSlideShowTimerWindow();
+            dialog.ShowDialog();
         }
     }    
 }

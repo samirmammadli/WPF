@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,29 +20,55 @@ namespace Gallery
     /// </summary>
     public partial class SetSlideShowTimerWindow : Window
     {
+        public int Value { get; private set; } = 0;
+
         public SetSlideShowTimerWindow()
         {
             InitializeComponent();
         }
 
+
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-
+            int.TryParse(tbValue.Text, out int value);
+            Value = value;
+            if (Value <= 0 || Value > 10)
+                MessageBox.Show("Incorrect value! (from 1 to 10)", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else
+                Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            if (Value <= 0 || Value > 10)
+                DialogResult = false;
+            else
+                DialogResult = true;
         }
 
-        private void tbValue_KeyDown(object sender, KeyEventArgs e)
+        private void tbValue_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+            try
+            {
+                var regex = new Regex("[0-9]{1}");
+                if (!regex.IsMatch(tbValue.Text))
+                {
+                    e.
+                    tbValue.Undo();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
