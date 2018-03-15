@@ -68,8 +68,9 @@ namespace Gallery
         private bool CheckIsAlbumSelected(Albums albom)
         {
             int index = lbAlboms.SelectedIndex;
+            int albomindex = albums.IndexOf(albom);
             if (index < 0) return false;
-            if (ImagesPanel.Children[index] == albom.AlbumImages[0]) return true;
+            if (index == albomindex) return true;
             return false;
         }
 
@@ -170,7 +171,7 @@ namespace Gallery
         {
             try
             {
-                //ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
+                ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
                 var img = ImageViewer.Source as BitmapImage;
                 img.Save(img.UriSource.LocalPath);
             }
@@ -185,6 +186,8 @@ namespace Gallery
         private void btnRotateLeft_Click(object sender, RoutedEventArgs e)
         {
             ImageViewer.Source = ImageRotation.RotateToLeft(ImageViewer.Source.ToString());
+            var img = ImageViewer.Source as BitmapImage;
+            img.Save(img.UriSource.LocalPath);
         }
 
         
@@ -192,14 +195,22 @@ namespace Gallery
 
     static class Saver
     {
-        static private BitmapEncoder GetEncoder()
+        static private BitmapEncoder GetEncoder(string file, FileExtensionFilter filter)
         {
-            return new BmpBitmapEncoder();
+            var encoderType = filter.CheckExtensionMath(file);
+            if (encoderType == ".gif")
+                return new GifBitmapEncoder();
+            else if(encoderType == ".bmp")
+                return new BmpBitmapEncoder();
+            else if (encoderType == ".png")
+                return new PngBitmapEncoder();
+            else
+                return new JpegBitmapEncoder();
         }
-
+        
         public static void Save(this BitmapImage image, string filePath)
         {
-            var encoder = new BmpBitmapEncoder();
+            var encoder = GetEncoder(filePath, new ImageFilesFilter());
             encoder.Frames.Add(BitmapFrame.Create(image));
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))

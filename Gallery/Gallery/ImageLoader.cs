@@ -15,13 +15,13 @@ namespace Gallery
     {
         protected string[] FileEtensions { get;  set; }
 
-        public bool CheckExtensionMath(string filename)
+        public string CheckExtensionMath(string filename)
         {
             foreach (var ext in FileEtensions)
             {
-                if (filename.EndsWith(ext, true, CultureInfo.CurrentCulture)) return true;
+                if (filename.EndsWith(ext, true, CultureInfo.CurrentCulture)) return ext;
             }
-            return false;
+            return "";
         }
     }
 
@@ -33,7 +33,7 @@ namespace Gallery
                 ".jpg",
                 ".jpeg",
                 ".bmp",
-                ".gif" };
+                ".png" };
         } 
     }
 
@@ -41,7 +41,7 @@ namespace Gallery
     {
         static public BitmapImage DownloadImage(Uri filename, FileExtensionFilter filter)
         {
-            if (filter.CheckExtensionMath(filename.ToString()))
+            if (filter.CheckExtensionMath(filename.ToString()) != "")
             {
                 var image = new BitmapImage();
 
@@ -61,12 +61,10 @@ namespace Gallery
         {
             var image = new BitmapImage();
             image.BeginInit();
-
             image.Rotation = Rotation.Rotate90;
             image.UriSource = new Uri(path);
-
+            image.CacheOption = BitmapCacheOption.OnLoad;
             image.EndInit();
-
             return image;
         }
 
@@ -77,7 +75,7 @@ namespace Gallery
 
             image.Rotation = Rotation.Rotate270;
             image.UriSource = new Uri(path);
-
+            image.CacheOption = BitmapCacheOption.OnLoad;
             image.EndInit();
 
             return image;
@@ -115,7 +113,7 @@ namespace Gallery
             var files = folder.GetFiles();
             foreach (var file in files)
             {
-                if (Filter.CheckExtensionMath(file.FullName))
+                if (Filter.CheckExtensionMath(file.FullName) != "")
                 {
                     _images.Add(new Image {Source = ImagePreview(new Uri(file.FullName)), Tag = file } );
                 }
