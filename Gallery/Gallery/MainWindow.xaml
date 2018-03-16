@@ -61,7 +61,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Slide Show">
-                <MenuItem Header="Set Timer" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Name="MenuSetTimer" Header="Set Timer" Click="MenuSetTimer_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <Grid>

@@ -25,6 +25,7 @@ namespace Gallery
         public SetSlideShowTimerWindow()
         {
             InitializeComponent();
+            tbValue.Focus();
         }
 
 
@@ -51,23 +52,11 @@ namespace Gallery
                 DialogResult = true;
         }
 
-        private void tbValue_TextChanged(object sender, TextChangedEventArgs e)
+        private void tbValue_KeyDown(object sender, KeyEventArgs e)
         {
-
-            try
+            if (e.Key == Key.Enter)
             {
-                var regex = new Regex("[0-9]{1}");
-                //if (!regex.IsMatch(tbValue.Text))
-                //{
-                //    e.
-                //    tbValue.Undo();
-
-                //}
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
+                btnOk_Click(sender, e);
             }
         }
     }

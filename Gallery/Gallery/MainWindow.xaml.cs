@@ -27,6 +27,7 @@ namespace Gallery
         private List<Albums> albums;
         private int currentIndex = -1;
         private DispatcherTimer timer;
+        public int TimerSeconds { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -208,6 +209,7 @@ namespace Gallery
 
         private void btnRotateRight_Click(object sender, RoutedEventArgs e)
         {
+            if (ImageViewer.Source == null) return;
             try
             {
                 ImageViewer.Source = ImageRotation.RotateToRight(ImageViewer.Source.ToString());
@@ -223,6 +225,7 @@ namespace Gallery
 
         private void btnRotateLeft_Click(object sender, RoutedEventArgs e)
         {
+            if (ImageViewer.Source == null) return;
             ImageViewer.Source = ImageRotation.RotateToLeft(ImageViewer.Source.ToString());
             var img = ImageViewer.Source as BitmapImage;
             img.Save(img.UriSource.LocalPath);
@@ -249,13 +252,15 @@ namespace Gallery
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
 
-
+            throw new NotImplementedException();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuSetTimer_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SetSlideShowTimerWindow();
             dialog.ShowDialog();
+            if(dialog.Value != 0)
+                TimerSeconds = dialog.Value;
         }
     }    
 }
