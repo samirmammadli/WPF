@@ -81,7 +81,7 @@
                 <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5">OK</Button>
                 <Button Name="btnPrevious" Click="btnPrevious_Click" Margin="5">OK</Button>
                 <ToggleButton Name="btnPlay" Click="btnPlay_Click" Margin="5">OK</ToggleButton>
-                <Button Name="btnNex" Click="btnNex_Click" Margin="5">OK</Button>
+                <Button Name="btnNext" Click="btnNext_Click" Margin="5">OK</Button>
                 <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5">OK</Button>
             </WrapPanel>
             <GroupBox Grid.Column="4">

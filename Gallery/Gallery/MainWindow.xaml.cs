@@ -27,7 +27,7 @@ namespace Gallery
         private List<Albums> albums;
         private int currentIndex = -1;
         private DispatcherTimer timer;
-        public int TimerSeconds { get; private set; }
+        public int TimerSeconds { get; private set; } = 2;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,9 +37,6 @@ namespace Gallery
                 albums = new List<Albums>();
                 lbAlboms.ItemsSource = albums;
                 timer = new DispatcherTimer();
-                timer.Tick += Timer_Tick;
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
             }
             catch (Exception ex)
             {
@@ -50,7 +47,7 @@ namespace Gallery
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //MessageBox.Show("Salam");
+            btnNext_Click(sender, null);
         }
 
         private bool CheckAlbumExisting(string path)
@@ -139,8 +136,6 @@ namespace Gallery
             var imageInfo = image.Tag as FileInfo;
             var fileName = (image.Source as BitmapImage).UriSource;
             LoadViewerImage(fileName, imageInfo);
-            
-
         }
 
         private Image GetSelectedImage(RoutedEventArgs e)
@@ -189,12 +184,13 @@ namespace Gallery
             MessageBox.Show(sender.GetType().ToString());
         }
 
-        private void btnNex_Click(object sender, RoutedEventArgs e)
+        private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (ImagesPanel.Children == null) return;
-                if (currentIndex + 1 >= ImagesPanel.Children.Count || currentIndex == -1) return;
+                if (ImagesPanel.Children == null || ImagesPanel.Children.Count == 0) return;
+                if (currentIndex == -1) return;
+                if (currentIndex + 1 == ImagesPanel.Children.Count) currentIndex = -1;
                 var image = (ImagesPanel.Children[++currentIndex] as Button).Content as Image;
                 var source = (image.Source as BitmapImage).UriSource;
                 var info = image.Tag as FileInfo;
@@ -235,7 +231,7 @@ namespace Gallery
         {
             try
             {
-                if (ImagesPanel.Children == null) return;
+                if (ImagesPanel.Children == null || ImagesPanel.Children.Count == 0) return;
                 if (currentIndex - 1 < 0) return;
                 var image = (ImagesPanel.Children[--currentIndex] as Button).Content as Image;
                 var source = (image.Source as BitmapImage).UriSource;
@@ -251,8 +247,30 @@ namespace Gallery
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            if(ImagesPanel.Children == null || ImagesPanel.Children.Count == 0)
+            {
+                btnPlay.IsChecked = false;
+                return;
+            }
+            if (btnPlay.IsChecked == true)
+            {
+                var image = (ImagesPanel.Children[0] as Button).Content as Image;
+                var fileInfo = image.Tag as FileInfo;
+                currentIndex = 0;
+                LoadViewerImage(new Uri(fileInfo.FullName), fileInfo);
+                timer.Tick += Timer_Tick;
+                timer.Interval = TimeSpan.FromSeconds(TimerSeconds);
+                timer.Start();
+            }
+            else
+            {
+                timer.Stop();
+            }
+        }
 
-            throw new NotImplementedException();
+        private void SetTimerInterval()
+        {
+            timer.Interval = TimeSpan.FromSeconds(TimerSeconds);
         }
 
         private void MenuSetTimer_Click(object sender, RoutedEventArgs e)
@@ -261,6 +279,7 @@ namespace Gallery
             dialog.ShowDialog();
             if(dialog.Value != 0)
                 TimerSeconds = dialog.Value;
+            SetTimerInterval();
         }
     }    
 }
