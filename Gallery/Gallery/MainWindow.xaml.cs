@@ -68,6 +68,7 @@ namespace Gallery
         private void AddPicturesToAlbum(int index, Image image)
         {
             albums[index].AlbumImages.Add(new Button() { Content = image, Margin = new Thickness(3, 3, 3, 3) });
+
             lbAlboms.Items.Refresh();
         }
         
