@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="432*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="2">
+            <TreeViewItem Header="Expand All"/>
+            <TreeViewItem Header="Electronics">
+                <TreeViewItem Header="Television" />
+                <TreeViewItem Header="Audio" />
+                <TreeViewItem Header="Notebooks" />
+                <TreeViewItem Header="Tablets" />
+                <TreeViewItem Header="Phones" />
+            </TreeViewItem>
+            <TreeViewItem Header="Clothing">
+                <TreeViewItem Header="Shoes" />
+                <TreeViewItem Header="Jackets" />
+                <TreeViewItem Header="Pants" />
+                <TreeViewItem Header="Gloves" />
+                <TreeViewItem Header="Hats" />
+                <TreeViewItem Header="Shirts" />
+            </TreeViewItem>
+            <TreeViewItem Header="Health">
+                <TreeViewItem Header="Nails" />
+                <TreeViewItem Header="Makeup" />
+                <TreeViewItem Header="Skin Care" />
+                <TreeViewItem Header="Hair Care" />
+                <TreeViewItem Header="Shaving" />
+                <TreeViewItem Header="Styling" />
+            </TreeViewItem>
+        </TreeView>
     </Grid>
 </Window>
+
