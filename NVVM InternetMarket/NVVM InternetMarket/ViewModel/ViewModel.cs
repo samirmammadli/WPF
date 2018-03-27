@@ -14,7 +14,8 @@ namespace NVVM_InternetMarket.ViewModel
         {
             var category = new Electronics();
             Categories = new ObservableDictionary<string, ICategory> {{category.CategoryName, category}};
-            Categories[category.CategoryName].Products.Add(new MobilePhone {Name = "Samir", BrandName = "Mammadli"});
+            Categories[category.CategoryName].Products.Add(new MobilePhone {Name = "Iphone 6", BrandName = "Apple"});
+            Categories[category.CategoryName].Products.Add(new MobilePhone { Name = "Galaxy S8", BrandName = "Samsung" });
         }
 
 

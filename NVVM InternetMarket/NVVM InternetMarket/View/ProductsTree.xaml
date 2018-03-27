@@ -18,26 +18,16 @@
         </Grid.ColumnDefinitions>
         <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="4">
             <TreeView Name="viewsTreeView"  >
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type m:Electronics}" ItemsSource="{Binding Products}">
-                        <StackPanel Orientation="Horizontal">
-                            <!--<Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />-->
-                            <TextBlock Text="{Binding CategoryName}" />
-                            <TextBlock Text=" [" Foreground="Blue" />
-                            <TextBlock Text="{Binding Products.Count}" Foreground="Blue" />
-                            <TextBlock Text="]" Foreground="Blue" />
-                        </StackPanel>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=Products}">
+                        <TextBlock Text="{Binding CategoryName}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type m:Product}" >
-                        <StackPanel Orientation="Horizontal">
-                            <!--<Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />-->
-                            <TextBlock Text="{Binding Name}" />
-                            <TextBlock Text=" (" Foreground="Green" />
-                            <TextBlock Text="{Binding BrandName}" Foreground="Green" />
-                            <TextBlock Text=" years)" Foreground="Green" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TreeView.Resources>
+                </TreeView.ItemTemplate>
             </TreeView>
             <!--<TreeViewItem Header="Electronics">
                 <TreeViewItem Header="Television" />
