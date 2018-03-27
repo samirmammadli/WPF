@@ -4,39 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NVVM_InternetMarket"
+        xmlns:v="clr-namespace:NVVM_InternetMarket.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="85*"/>
-            <ColumnDefinition Width="432*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="2">
-            <TreeViewItem Header="Expand All"/>
-            <TreeViewItem Header="Electronics">
-                <TreeViewItem Header="Television" />
-                <TreeViewItem Header="Audio" />
-                <TreeViewItem Header="Notebooks" />
-                <TreeViewItem Header="Tablets" />
-                <TreeViewItem Header="Phones" />
-            </TreeViewItem>
-            <TreeViewItem Header="Clothing">
-                <TreeViewItem Header="Shoes" />
-                <TreeViewItem Header="Jackets" />
-                <TreeViewItem Header="Pants" />
-                <TreeViewItem Header="Gloves" />
-                <TreeViewItem Header="Hats" />
-                <TreeViewItem Header="Shirts" />
-            </TreeViewItem>
-            <TreeViewItem Header="Health">
-                <TreeViewItem Header="Nails" />
-                <TreeViewItem Header="Makeup" />
-                <TreeViewItem Header="Skin Care" />
-                <TreeViewItem Header="Hair Care" />
-                <TreeViewItem Header="Shaving" />
-                <TreeViewItem Header="Styling" />
-            </TreeViewItem>
-        </TreeView>
+        <v:ProductsTree Grid.Column="0"/>
     </Grid>
 </Window>
 

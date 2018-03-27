@@ -4,21 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NVVM_InternetMarket.View"
+             xmlns:vm="clr-namespace:NVVM_InternetMarket.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
     <Grid>
-       <TreeView>
-            <Button Width="80">ok</Button>
-            <TreeViewItem>
-                <Button Width="80">ok</Button>
-                <TreeViewItem>
-                    <Button Width="80">ok</Button>
-                    <Button Width="80">ok</Button>
-                    <Button Width="80">ok</Button>
-                    <Button Width="80">ok</Button>
-                </TreeViewItem>
-           </TreeViewItem>
-           
-       </TreeView> 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="74*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="4">
+            <TreeView Name="viewsTreeView"  >
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type local:Family}" ItemsSource="{Binding Members}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text=" [" Foreground="Blue" />
+                            <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
+                            <TextBlock Text="]" Foreground="Blue" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type local:FamilyMember}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text=" (" Foreground="Green" />
+                            <TextBlock Text="{Binding Age}" Foreground="Green" />
+                            <TextBlock Text=" years)" Foreground="Green" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+            <!--<TreeViewItem Header="Electronics">
+                <TreeViewItem Header="Television" />
+                <TreeViewItem Header="Audio" />
+                <TreeViewItem Header="Notebooks" />
+                <TreeViewItem Header="Tablets" />
+                <TreeViewItem Header="Phones" />
+            </TreeViewItem>
+            <TreeViewItem Header="Clothing">
+                <TreeViewItem Header="Shoes" />
+                <TreeViewItem Header="Jackets" />
+                <TreeViewItem Header="Pants" />
+                <TreeViewItem Header="Gloves" />
+                <TreeViewItem Header="Hats" />
+                <TreeViewItem Header="Shirts" />
+            </TreeViewItem>
+            <TreeViewItem Header="Health">
+                <TreeViewItem Header="Nails" />
+                <TreeViewItem Header="Makeup" />
+                <TreeViewItem Header="Skin Care" />
+                <TreeViewItem Header="Hair Care" />
+                <TreeViewItem Header="Shaving" />
+                <TreeViewItem Header="Styling" />
+            </TreeViewItem>-->
+        </TreeView>
     </Grid>
 </UserControl>
