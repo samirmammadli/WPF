@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NVVM_InternetMarket;
 
 namespace NVVM_InternetMarket.View
 {
@@ -37,7 +38,9 @@ namespace NVVM_InternetMarket.View
             family2.Members.Add(new FamilyMember() { Name = "Norma Moe", Age = 28 });
             families.Add(family2);
 
-            viewsTreeView.ItemsSource = families;
+            var model = new ViewModel.ViewModel();
+
+            viewsTreeView.ItemsSource = model.Categories;
         }
     }
 
