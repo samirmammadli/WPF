@@ -11,7 +11,8 @@ namespace NVVM_InternetMarket.Model
     interface ICategory
     {
         string CategoryName { get; set; }
-        ObservableCollection<Product> Products { get; set; }
+        ObservableDictionary<string, ObservableCollection<Product>> Products { get; set; }
+        void AddProduct(Product product);
     }
 
     abstract class ProductDescription
@@ -44,7 +45,7 @@ namespace NVVM_InternetMarket.Model
 
         public virtual Dictionary<string, string> Description { get; set; }
 
-        
+
         public string Name
         {
             get { return _name; }
