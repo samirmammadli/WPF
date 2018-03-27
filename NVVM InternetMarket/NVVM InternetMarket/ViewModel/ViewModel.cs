@@ -10,17 +10,25 @@ namespace NVVM_InternetMarket.ViewModel
 {
     class ViewModel : ObservableObject
     {
-        private ObservableCollection<Product> _products;
-
-        public ObservableCollection<Product> Products
+        public ViewModel()
         {
-            get { return _products; }
+            Categories = new ObservableCollection<ICategory> { new Electronics() };
+            Categories.FirstOrDefault().AddProduct(new MobilePhone());
+        }
+
+
+        private ObservableCollection<ICategory> _categories;
+
+        public ObservableCollection<ICategory> Categories
+        {
+            get { return _categories; }
             set
             {
-                _products = value;
+                _categories = value;
                 OnPropertyChanged();
             }
         }
+
 
     }
 }

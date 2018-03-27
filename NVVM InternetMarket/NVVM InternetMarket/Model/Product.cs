@@ -15,33 +15,78 @@ namespace NVVM_InternetMarket.Model
         void AddProduct(Product product);
     }
 
-    abstract class ProductDescription
+    class Electronics : ICategory
     {
-        public Dictionary<string, string> Descriptions { get; set; }
-        public ProductDescription()
+        public string CategoryName { get; set; }
+        public ObservableDictionary<string, ObservableCollection<Product>> Products { get; set; }
+
+        public void AddProduct(Product product)
         {
-            Descriptions = new Dictionary<string, string>();
+            if (Products.ContainsKey(product.ToString()))
+            {
+                Products[product.ToString()].Add(product);
+            }
+            else
+            {
+                Products.Add(product.ToString(), new ObservableCollection<Product>());
+                Products[product.ToString()].Add(product);
+            }
+                
+        }
+
+        public Electronics()
+        {
+            CategoryName = "Electronics";
+            Products = new ObservableDictionary<string, ObservableCollection<Product>>();
+        }
+
+        public override string ToString()
+        {
+            return CategoryName;
         }
     }
 
-    class ElectronicDescription : ProductDescription
-    {
-        public ElectronicDescription()
-        {
-            Descriptions.Add("", "");
-            Descriptions.Add("", "");
-            Descriptions.Add("", "");
-            Descriptions.Add("", "");
-            Descriptions.Add("", "");
-            Descriptions.Add("", "");
-        }
-    }
+    #region Test
+    //abstract class ProductDescription
+    //{
+    //    public Dictionary<string, string> Descriptions { get; set; }
+    //    public ProductDescription()
+    //    {
+    //        Descriptions = new Dictionary<string, string>();
+    //    }
+    //}
+
+    //class ElectronicDescription : ProductDescription
+    //{
+    //    public ElectronicDescription()
+    //    {
+    //        Descriptions.Add("", "");
+    //        Descriptions.Add("", "");
+    //        Descriptions.Add("", "");
+    //        Descriptions.Add("", "");
+    //        Descriptions.Add("", "");
+    //        Descriptions.Add("", "");
+    //    }
+    //}
+    #endregion
+
 
     abstract class Product : ObservableObject
     {
         protected string _name;
         protected string _brandName;
         protected double _price;
+        protected string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Dictionary<string, string> Description { get; set; }
 
@@ -79,7 +124,10 @@ namespace NVVM_InternetMarket.Model
 
     class MobilePhone : Product
     {
-
+        public override string ToString()
+        {
+            return "Mobile Phone";
+        }
     }
 
 }
