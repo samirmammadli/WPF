@@ -40,7 +40,7 @@ namespace NVVM_InternetMarket.View
 
             var model = new ViewModel.ViewModel();
 
-            viewsTreeView.ItemsSource = model.Categories;
+            viewsTreeView.ItemsSource = model.Categories.Values;
         }
     }
 

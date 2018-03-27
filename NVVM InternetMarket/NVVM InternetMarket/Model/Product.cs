@@ -11,39 +11,25 @@ namespace NVVM_InternetMarket.Model
     interface ICategory
     {
         string CategoryName { get; set; }
-        ObservableDictionary<string, ObservableCollection<Product>> Products { get; set; }
-        void AddProduct(Product product);
+        ObservableCollection<Product> Products { get; set; }
     }
 
     class Electronics : ICategory
     {
         public string CategoryName { get; set; }
-        public ObservableDictionary<string, ObservableCollection<Product>> Products { get; set; }
+        public ObservableCollection<Product> Products { get; set; }
 
-        public void AddProduct(Product product)
-        {
-            if (Products.ContainsKey(product.ToString()))
-            {
-                Products[product.ToString()].Add(product);
-            }
-            else
-            {
-                Products.Add(product.ToString(), new ObservableCollection<Product>());
-                Products[product.ToString()].Add(product);
-            }
-                
-        }
 
         public Electronics()
         {
             CategoryName = "Electronics";
-            Products = new ObservableDictionary<string, ObservableCollection<Product>>();
+            Products = new  ObservableCollection<Product>();
         }
 
-        public override string ToString()
-        {
-            return CategoryName;
-        }
+        //public override string ToString()
+        //{
+        //    return CategoryName;
+        //}
     }
 
     #region Test

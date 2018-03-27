@@ -12,14 +12,15 @@ namespace NVVM_InternetMarket.ViewModel
     {
         public ViewModel()
         {
-            Categories = new ObservableCollection<ICategory> { new Electronics() };
-            Categories.FirstOrDefault().AddProduct(new MobilePhone());
+            var category = new Electronics();
+            Categories = new ObservableDictionary<string, ICategory> {{category.CategoryName, category}};
+            Categories[category.CategoryName].Products.Add(new MobilePhone {Name = "Samir", BrandName = "Mammadli"});
         }
 
 
-        private ObservableCollection<ICategory> _categories;
+        private ObservableDictionary<string, ICategory> _categories;
 
-        public ObservableCollection<ICategory> Categories
+        public ObservableDictionary<string, ICategory> Categories
         {
             get { return _categories; }
             set

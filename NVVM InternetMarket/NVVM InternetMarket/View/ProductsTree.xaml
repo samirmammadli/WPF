@@ -19,21 +19,21 @@
         <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="4">
             <TreeView Name="viewsTreeView"  >
                 <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type vm:ViewModel}" ItemsSource="{Binding Categories.Value}">
+                    <HierarchicalDataTemplate DataType="{x:Type m:Electronics}" ItemsSource="{Binding Products}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />
-                            <TextBlock Text="{Binding Name}" />
+                            <!--<Image Source="/WpfTutorialSamples;component/Images/group.png" Margin="0,0,5,0" />-->
+                            <TextBlock Text="{Binding CategoryName}" />
                             <TextBlock Text=" [" Foreground="Blue" />
-                            <TextBlock Text="{Binding Members.Count}" Foreground="Blue" />
+                            <TextBlock Text="{Binding Products.Count}" Foreground="Blue" />
                             <TextBlock Text="]" Foreground="Blue" />
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type m:Product}" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                            <!--<Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />-->
                             <TextBlock Text="{Binding Name}" />
                             <TextBlock Text=" (" Foreground="Green" />
-                            <TextBlock Text="{Binding Age}" Foreground="Green" />
+                            <TextBlock Text="{Binding BrandName}" Foreground="Green" />
                             <TextBlock Text=" years)" Foreground="Green" />
                         </StackPanel>
                     </DataTemplate>
