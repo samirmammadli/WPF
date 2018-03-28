@@ -39,28 +39,9 @@ namespace NVVM_InternetMarket.Model
         }
     }
 
-    class AllProducts : Element
+    class Category : Element
     {
-        public AllProducts()
-        {
-            Name = "All Products";
-        }
-    }
 
-    class MobilePhones : Element
-    {
-        public MobilePhones()
-        {
-            Name = "Mobile Phones";
-        }
-    }
-
-    class Electronics : Element
-    {
-        public Electronics()
-        {
-            Name = "Electronics";
-        }
     }
 
     #region Test

@@ -16,7 +16,7 @@
             <ColumnDefinition Width="74*"/>
             <ColumnDefinition Width="79*"/>
         </Grid.ColumnDefinitions>
-        <TreeView FontSize="16" Name="TreeView" Grid.ColumnSpan="4">
+        <TreeView FontSize="14" Name="TreeView" Grid.ColumnSpan="4">
             <TreeView Name="viewsTreeView"  >
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type m:Element}" ItemsSource="{Binding SubElements}" >
@@ -29,9 +29,9 @@
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type m:Product}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding BrandName}" />
-                            <TextBlock Text=" (" Foreground="Green" />
                             <TextBlock Text="{Binding Name}" Foreground="Green" />
+                            <TextBlock Text=" (" Foreground="Green" />
+                            <TextBlock Text="{Binding BrandName}" />
                             <TextBlock Text=" )" Foreground="Green" />
                         </StackPanel>
                     </DataTemplate>

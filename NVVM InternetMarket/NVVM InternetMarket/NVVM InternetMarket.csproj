@@ -58,6 +58,9 @@
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Services\ObservableDictionary.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\CentralControl.xaml.cs">
+      <DependentUpon>CentralControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductsTree.xaml.cs">
       <DependentUpon>ProductsTree.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CentralControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProductsTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
