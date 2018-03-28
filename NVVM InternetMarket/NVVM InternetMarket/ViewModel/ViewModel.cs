@@ -12,16 +12,22 @@ namespace NVVM_InternetMarket.ViewModel
     {
         public ViewModel()
         {
-            var category = new Electronics();
-            Categories = new ObservableDictionary<string, ICategory> {{category.CategoryName, category}};
-            Categories[category.CategoryName].Products.Add(new MobilePhone {Name = "Iphone 6", BrandName = "Apple"});
-            Categories[category.CategoryName].Products.Add(new MobilePhone { Name = "Galaxy S8", BrandName = "Samsung" });
+            var category = new AllProducts();
+            category.SubElements.Add(new Electronics());
+            category.SubElements.FirstOrDefault().SubElements.Add(new MobilePhones());
+            category.SubElements.FirstOrDefault().SubElements.FirstOrDefault().SubElements.Add(new Product { Name = "Galaxy S8", BrandName = "Samsung"});
+            category.SubElements.FirstOrDefault().SubElements.FirstOrDefault().SubElements.Add(new Product { Name = "Galaxy S7", BrandName = "Samsung" });
+            category.SubElements.FirstOrDefault().SubElements.FirstOrDefault().SubElements.Add(new Product { Name = "Galaxy A5 2017", BrandName = "Samsung" });
+            category.SubElements.FirstOrDefault().SubElements.FirstOrDefault().SubElements.Add(new Product { Name = "Galaxy A8 2015", BrandName = "Samsung" });
+            category.SubElements.FirstOrDefault().SubElements.FirstOrDefault().SubElements.Add(new Product { Name = "Galaxy Note 9", BrandName = "Samsung" });
+
+            Categories = new ObservableCollection<Element>();
+            Categories.Add(category);
+
         }
+        private ObservableCollection<Element> _categories;
 
-
-        private ObservableDictionary<string, ICategory> _categories;
-
-        public ObservableDictionary<string, ICategory> Categories
+        public ObservableCollection<Element> Categories
         {
             get { return _categories; }
             set

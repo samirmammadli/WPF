@@ -8,28 +8,59 @@ using System.Collections.ObjectModel;
 
 namespace NVVM_InternetMarket.Model
 {
-    interface ICategory
+
+    abstract class Element : ObservableObject
     {
-        string CategoryName { get; set; }
-        ObservableCollection<Product> Products { get; set; }
-    }
+        protected string _name;
+        protected ObservableCollection<Element> _subElements;
 
-    class Electronics : ICategory
-    {
-        public string CategoryName { get; set; }
-        public ObservableCollection<Product> Products { get; set; }
-
-
-        public Electronics()
+        public Element()
         {
-            CategoryName = "Electronics";
-            Products = new  ObservableCollection<Product>();
+            SubElements = new ObservableCollection<Element>();
         }
 
-        //public override string ToString()
-        //{
-        //    return CategoryName;
-        //}
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<Element> SubElements
+        {
+            get { return _subElements; }
+            set
+            {
+                _subElements = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    class AllProducts : Element
+    {
+        public AllProducts()
+        {
+            Name = "All Products";
+        }
+    }
+
+    class MobilePhones : Element
+    {
+        public MobilePhones()
+        {
+            Name = "Mobile Phones";
+        }
+    }
+
+    class Electronics : Element
+    {
+        public Electronics()
+        {
+            Name = "Electronics";
+        }
     }
 
     #region Test
@@ -57,9 +88,9 @@ namespace NVVM_InternetMarket.Model
     #endregion
 
 
-    abstract class Product : ObservableObject
+    class Product : Element
     {
-        protected string _name;
+        
         protected string _brandName;
         protected double _price;
         protected string _imagePath;
@@ -76,16 +107,6 @@ namespace NVVM_InternetMarket.Model
 
         public virtual Dictionary<string, string> Description { get; set; }
 
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
 
         public string BrandName
         {
@@ -107,13 +128,4 @@ namespace NVVM_InternetMarket.Model
             }
         }
     }
-
-    class MobilePhone : Product
-    {
-        public override string ToString()
-        {
-            return "Mobile Phone";
-        }
-    }
-
 }
