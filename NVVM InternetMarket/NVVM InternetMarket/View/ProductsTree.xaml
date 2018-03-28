@@ -17,7 +17,7 @@
             <ColumnDefinition Width="79*"/>
         </Grid.ColumnDefinitions>
         <TreeView FontSize="14" Name="TreeView" Grid.ColumnSpan="4">
-            <TreeView Name="viewsTreeView"  >
+            <TreeView Name="viewsTreeView">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type m:Element}" ItemsSource="{Binding SubElements}" >
                         <StackPanel Orientation="Horizontal">
