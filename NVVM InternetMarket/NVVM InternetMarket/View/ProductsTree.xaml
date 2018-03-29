@@ -9,34 +9,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="144*"/>
-            <ColumnDefinition Width="74*"/>
-            <ColumnDefinition Width="79*"/>
-        </Grid.ColumnDefinitions>
-        <TreeView FontSize="14" Name="TreeView" Grid.ColumnSpan="4">
-            <TreeView Name="viewsTreeView">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type m:Element}" ItemsSource="{Binding SubElements}" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" />
-                            <TextBlock Text=" [" Foreground="Blue" />
-                            <TextBlock Text="{Binding SubElements.Count}" Foreground="Blue" />
-                            <TextBlock Text="]" Foreground="Blue" />
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type m:Product}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" Foreground="Green" />
-                            <TextBlock Text=" (" Foreground="Green" />
-                            <TextBlock Text="{Binding BrandName}" />
-                            <TextBlock Text=" )" Foreground="Green" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-        </TreeView>
-    </Grid>
+    <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4">
+        <TreeView.Resources>
+            <HierarchicalDataTemplate DataType="{x:Type m:Element}" ItemsSource="{Binding SubElements}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name}" />
+                    <TextBlock Text=" [" Foreground="Blue" />
+                    <TextBlock Text="{Binding SubElements.Count}" Foreground="Blue" />
+                    <TextBlock Text="]" Foreground="Blue" />
+                </StackPanel>
+            </HierarchicalDataTemplate>
+            <DataTemplate DataType="{x:Type m:Product}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Name}" Foreground="Green" />
+                    <TextBlock Text=" (" Foreground="Green" />
+                    <TextBlock Text="{Binding BrandName}" />
+                    <TextBlock Text=" )" Foreground="Green" />
+                </StackPanel>
+            </DataTemplate>
+        </TreeView.Resources>
+    </TreeView>
 </UserControl>
