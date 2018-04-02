@@ -9,15 +9,12 @@ using System.Collections.ObjectModel;
 namespace NVVM_InternetMarket.Model
 {
 
-    abstract class Element : ObservableObject
+    abstract class CategoryItems : ObservableObject
     {
         protected string _name;
-        protected ObservableCollection<Element> _subElements;
 
-        public Element()
-        {
-            SubElements = new ObservableCollection<Element>();
-        }
+        public virtual void AddItem(CategoryItems item) { }
+
 
         public string Name
         {
@@ -28,7 +25,21 @@ namespace NVVM_InternetMarket.Model
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<Element> SubElements
+    }
+
+
+    class Category : CategoryItems
+    {
+
+        private ObservableCollection<CategoryItems> _subElements;
+
+        public Category()
+        {
+            SubCategories = new ObservableCollection<CategoryItems>();
+        }
+
+
+        public ObservableCollection<CategoryItems> SubCategories
         {
             get { return _subElements; }
             set
@@ -39,9 +50,25 @@ namespace NVVM_InternetMarket.Model
         }
     }
 
-    class Category : Element
+    class FinalCategory : CategoryItems
     {
 
+        private ObservableCollection<Product> _products;
+
+        public FinalCategory()
+        {
+            Products = new ObservableCollection<Product>();
+        }
+
+        public ObservableCollection<Product> Products
+        {
+            get { return _products; }
+            set
+            {
+                _products = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     #region Test
@@ -69,7 +96,7 @@ namespace NVVM_InternetMarket.Model
     #endregion
 
 
-    class Product : Element
+    class Product : ObservableObject
     {
         
         protected string _brandName;
