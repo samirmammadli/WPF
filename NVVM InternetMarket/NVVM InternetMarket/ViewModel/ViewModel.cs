@@ -29,7 +29,6 @@ namespace NVVM_InternetMarket.ViewModel
             category.SubCategories.Add(new Category { Name = "Sports" });
             category.SubCategories.Add(new Category { Name = "Consumer electronics"});
 
-            category.SubCategories[0].
 
             ////Computer and Office
             //category.SubCategories.FirstOrDefault().SubCategories.Add(new Category { Name = "Mobile Phones" });
@@ -58,8 +57,8 @@ namespace NVVM_InternetMarket.ViewModel
             //category.SubCategories[2].SubCategories[0].SubCategories[1].SubCategories.Add(new Product { Name = "Play Station 4", BrandName = "Sony" });
             //category.SubCategories[2].SubCategories[0].SubCategories[1].SubCategories.Add(new Product { Name = "X-BOX ONE", BrandName = "Microsoft" });
 
-            Categories = new ObservableCollection<Category>();
-            Categories.Add(category);
+            //Categories = new ObservableCollection<Category>();
+            //Categories.Add(category);
         }
         private Product _currentProduct;
 
