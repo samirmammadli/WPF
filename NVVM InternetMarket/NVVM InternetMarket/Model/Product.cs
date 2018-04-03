@@ -12,10 +12,6 @@ namespace NVVM_InternetMarket.Model
     abstract class CategoryItems : ObservableObject
     {
         protected string _name;
-
-        public virtual void AddItem(CategoryItems item) { }
-
-
         public string Name
         {
             get { return _name; }
@@ -25,28 +21,40 @@ namespace NVVM_InternetMarket.Model
                 OnPropertyChanged();
             }
         }
+
+        public CategoryItems(string name)
+        {
+            Name = name;
+        }
+
+        public virtual void AddItem(string key, CategoryItems item) { throw new NotImplementedException(); }
+        public virtual void Delete(string key, CategoryItems item) { throw new NotImplementedException(); }
     }
 
 
     class Category : CategoryItems
     {
 
-        private ObservableCollection<CategoryItems> _subElements;
+        private Dictionary<string, CategoryItems> _subCategories;
 
-        public Category()
+        public Category(string name) : base (name)
         {
-            SubCategories = new ObservableCollection<CategoryItems>();
+            SubCategories = new Dictionary<string, CategoryItems>();
         }
 
-
-        public ObservableCollection<CategoryItems> SubCategories
+        public Dictionary<string, CategoryItems> SubCategories
         {
-            get { return _subElements; }
+            get { return _subCategories; }
             set
             {
-                _subElements = value;
+                _subCategories = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override void AddItem(string key, CategoryItems item)
+        {
+            
         }
     }
 
