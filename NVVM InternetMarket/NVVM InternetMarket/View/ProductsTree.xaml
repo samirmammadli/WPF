@@ -16,9 +16,6 @@
             <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <DataTemplate DataType="{x:Type vm:ViewModel}">
-            <local:ProductsTree/>
-        </DataTemplate>
         <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}" DataType="{x:Type m:Category}">
             <Label Content="{Binding Name}"/>
         </HierarchicalDataTemplate>

@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Resources/Themes/Core.xaml"/>
                 <ResourceDictionary Source="Resources/Themes/Icons.xaml"/>
                 <ResourceDictionary Source="Resources/Themes/Brushes.xaml"/>
+                <ResourceDictionary Source="Resources/ViewsDataTemplates.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

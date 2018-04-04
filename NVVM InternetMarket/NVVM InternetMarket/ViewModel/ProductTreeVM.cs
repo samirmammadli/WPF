@@ -9,30 +9,13 @@ using NVVM_InternetMarket.Services;
 
 namespace NVVM_InternetMarket.ViewModel
 {
-    class ViewModel : ObservableObject
+    class ProductTreeVM : ObservableObject
     {
-        static private ViewModel _instance;
 
-        static public ViewModel Instance
-        {
-            get
-            {
-                return _instance ?? (_instance = new ViewModel());
-            }
-        }
-
-        public ViewModel()
+        public ProductTreeVM()
         {
             Categories = new ObservableCollection<CategoryItem>(MockDataService.Instance.GetCategories());
         }
-        private Product _currentProduct;
-
-        public Product CurrentProduct
-        {
-            get { return _currentProduct; }
-            set { _currentProduct = value; }
-        }
-
 
         private ObservableCollection<CategoryItem> _categories;
 
@@ -45,7 +28,5 @@ namespace NVVM_InternetMarket.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
     }
 }

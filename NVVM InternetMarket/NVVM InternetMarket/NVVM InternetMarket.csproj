@@ -63,7 +63,8 @@
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\MockDataService.cs" />
     <Compile Include="Services\ObservableDictionary.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\ProductTreeVM.cs" />
     <Compile Include="View\CentralControl.xaml.cs">
       <DependentUpon>CentralControl.xaml</DependentUpon>
     </Compile>
@@ -93,6 +94,10 @@
     <Page Include="Resources\Themes\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ViewsDataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CentralControl.xaml">
       <SubType>Designer</SubType>

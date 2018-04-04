@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NVVM_InternetMarket;
+using NVVM_InternetMarket.ViewModel;
 
 namespace NVVM_InternetMarket.View
 {
@@ -25,7 +26,6 @@ namespace NVVM_InternetMarket.View
         public ProductsTree()
         {
             InitializeComponent();
-            viewsTreeView.ItemsSource = ViewModel.ViewModel.Instance.Categories;
         }
     }
 }

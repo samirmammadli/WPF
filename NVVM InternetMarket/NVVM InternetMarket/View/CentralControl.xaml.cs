@@ -23,7 +23,7 @@ namespace NVVM_InternetMarket.View
         public CentralControl()
         {
             InitializeComponent();
-            DataContext = ViewModel.ViewModel.Instance.Categories;
+
         }
     }
 }
