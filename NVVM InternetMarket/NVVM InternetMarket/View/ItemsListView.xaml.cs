@@ -18,9 +18,9 @@ namespace NVVM_InternetMarket.View
     /// <summary>
     /// Interaction logic for CentralControl.xaml
     /// </summary>
-    public partial class CentralControl : UserControl
+    public partial class ItemsListView : UserControl
     {
-        public CentralControl()
+        public ItemsListView()
         {
             InitializeComponent();
 

@@ -4,7 +4,7 @@
                     xmlns:vm="clr-namespace:NVVM_InternetMarket.ViewModel"
                     xmlns:v="clr-namespace:NVVM_InternetMarket.View">
     <DataTemplate DataType="{x:Type vm:CategoriesVM}">
-        <v:ProductsTree/>
+        <v:CategoriesView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:ItemsListVM}">
         <v:ItemsListView/>

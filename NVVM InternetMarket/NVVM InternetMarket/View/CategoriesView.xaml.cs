@@ -21,9 +21,9 @@ namespace NVVM_InternetMarket.View
     /// <summary>
     /// Interaction logic for ProductsTree.xaml
     /// </summary>
-    public partial class ProductsTree : UserControl
+    public partial class CategoriesView : UserControl
     {
-        public ProductsTree()
+        public CategoriesView()
         {
             InitializeComponent();
         }
