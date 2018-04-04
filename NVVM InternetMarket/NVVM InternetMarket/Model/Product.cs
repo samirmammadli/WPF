@@ -9,8 +9,19 @@ using System.Collections.ObjectModel;
 namespace NVVM_InternetMarket.Model
 {
 
-    abstract class CategoryItems : ObservableObject
+    abstract class CategoryItem : ObservableObject
     {
+        
+        protected CategoryItem _parent;
+        public CategoryItem Parent
+        {
+            get { return _parent; }
+            set
+            {
+                _parent = value;
+                OnPropertyChanged();
+            }
+        }
         protected string _name;
         public string Name
         {
@@ -22,27 +33,28 @@ namespace NVVM_InternetMarket.Model
             }
         }
 
-        public CategoryItems(string name)
+        public CategoryItem(string name, CategoryItem parent = null)
         {
             Name = name;
+            Parent = parent;
         }
 
-        public virtual void AddItem(string key, CategoryItems item) { throw new NotImplementedException(); }
-        public virtual void Delete(string key, CategoryItems item) { throw new NotImplementedException(); }
+        public virtual void AddItem(CategoryItem item) { throw new NotImplementedException(); }
+        public virtual void Delete(CategoryItem item) { throw new NotImplementedException(); }
     }
 
 
-    class Category : CategoryItems
+    class Category : CategoryItem
     {
 
-        private Dictionary<string, CategoryItems> _subCategories;
+        private ObservableCollection<CategoryItem> _subCategories;
 
-        public Category(string name) : base (name)
+        public Category(string name, CategoryItem parent = null) : base (name, parent)
         {
-            SubCategories = new Dictionary<string, CategoryItems>();
+            SubCategories = new ObservableCollection<CategoryItem>();
         }
 
-        public Dictionary<string, CategoryItems> SubCategories
+        public ObservableCollection<CategoryItem> SubCategories
         {
             get { return _subCategories; }
             set
@@ -52,18 +64,21 @@ namespace NVVM_InternetMarket.Model
             }
         }
 
-        public override void AddItem(string key, CategoryItems item)
+        public override void AddItem(CategoryItem item)
         {
-            
+            SubCategories.Add(item);
+        }
+
+        public override void Delete(CategoryItem item)
+        {
+            SubCategories.Remove(item);
         }
     }
 
-    class FinalCategory : CategoryItems
+    class FinalCategory : CategoryItem
     {
-
         private ObservableCollection<Product> _products;
-
-        public FinalCategory()
+        public FinalCategory(string name, CategoryItem parent = null) : base(name, parent)
         {
             Products = new ObservableCollection<Product>();
         }
