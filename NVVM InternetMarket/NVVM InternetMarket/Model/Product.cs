@@ -135,9 +135,13 @@ namespace NVVM_InternetMarket.Model
                 OnPropertyChanged();
             }
         }
-
-        public virtual Dictionary<string, string> Description { get; set; }
-
+        public Dictionary<string, string> Description { get; set; }
+        private CategoryItem category;
+        public CategoryItem Category
+        {
+            get { return category; }
+            set { category = value; OnPropertyChanged(); }
+        }
 
         public string BrandName
         {
