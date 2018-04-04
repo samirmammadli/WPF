@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NVVM_InternetMarket.Model;
+using NVVM_InternetMarket.Services;
 
 namespace NVVM_InternetMarket.ViewModel
 {
@@ -22,7 +23,7 @@ namespace NVVM_InternetMarket.ViewModel
 
         public ViewModel()
         {
-            
+            Categories = new ObservableCollection<CategoryItem>(MockDataService.Instance.GetCategories());
         }
         private Product _currentProduct;
 
@@ -33,9 +34,9 @@ namespace NVVM_InternetMarket.ViewModel
         }
 
 
-        private ObservableCollection<Category> _categories;
+        private ObservableCollection<CategoryItem> _categories;
 
-        public ObservableCollection<Category> Categories
+        public ObservableCollection<CategoryItem> Categories
         {
             get { return _categories; }
             set

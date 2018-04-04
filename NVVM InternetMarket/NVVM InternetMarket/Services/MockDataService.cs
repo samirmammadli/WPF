@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace NVVM_InternetMarket.Services
 {
-    class MockDataService
+    class MockDataService : IDataService
     {
         private List<CategoryItem> categories;
-        public MockDataService()
+        public static MockDataService Instance { get; set; } = new MockDataService();
+        private MockDataService()
         {
             categories = new List<CategoryItem>();
 
@@ -34,6 +35,11 @@ namespace NVVM_InternetMarket.Services
             categories.Add(new FinalCategory("Guitar", categories[2]));
             categories.Add(new FinalCategory("Pro audio equipment", categories[2]));
             categories.Add(new FinalCategory("String", categories[2]));
+        }
+
+        public IEnumerable<Product> GetProducts(CategoryItem category)
+        {
+            return null;
         }
 
         public IEnumerable<CategoryItem> GetCategories()

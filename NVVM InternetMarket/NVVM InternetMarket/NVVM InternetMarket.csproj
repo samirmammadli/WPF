@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Product.cs" />
     <Compile Include="ObservableObject.cs" />
+    <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\MockDataService.cs" />
     <Compile Include="Services\ObservableDictionary.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />

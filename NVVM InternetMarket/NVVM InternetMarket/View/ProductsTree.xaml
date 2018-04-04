@@ -11,11 +11,22 @@
              d:DesignHeight="300" d:DesignWidth="300"
              >
     <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:ViewModel}">
+            <local:ProductsTree/>
+        </DataTemplate>
         <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}" DataType="{x:Type m:Category}">
             <Label Content="{Binding Name}" Foreground="Red"/>
         </HierarchicalDataTemplate>
+        <DataTemplate DataType="{x:Type m:FinalCategory}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" Foreground="Green" />
+                <TextBlock Text=" [" Foreground="Blue" />
+                <TextBlock Text="{Binding Products.Count}" Foreground="Blue" />
+                <TextBlock Text="]" Foreground="Blue" />
+            </StackPanel>
+        </DataTemplate>
     </UserControl.Resources>
-    <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4">
+    <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4" ItemsSource="{Binding Categories}">
         <TreeView.Resources>
             <!--<HierarchicalDataTemplate DataType="{x:Type m:Category}" ItemsSource="{Binding SubElements}">
                 <StackPanel Orientation="Horizontal">
@@ -25,14 +36,7 @@
                     <TextBlock Text="]" Foreground="Blue" />
                 </StackPanel>
             </HierarchicalDataTemplate>-->
-            <DataTemplate DataType="{x:Type m:FinalCategory}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Name}" Foreground="Green" />
-                    <!--<TextBlock Text=" (" Foreground="Green" />
-                    <TextBlock Text="{Binding BrandName}" />
-                    <TextBlock Text=" )" Foreground="Green" />-->
-                </StackPanel>
-            </DataTemplate>
+            
         </TreeView.Resources>
     </TreeView>
 </UserControl>
