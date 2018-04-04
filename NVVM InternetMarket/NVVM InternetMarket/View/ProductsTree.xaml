@@ -8,22 +8,33 @@
              xmlns:vm="clr-namespace:NVVM_InternetMarket.ViewModel"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="300" d:DesignWidth="300"  Background="#333"
              >
     <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
         <DataTemplate DataType="{x:Type vm:ViewModel}">
             <local:ProductsTree/>
         </DataTemplate>
         <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}" DataType="{x:Type m:Category}">
-            <Label Content="{Binding Name}" Foreground="DarkOrchid"/>
+            <Label Content="{Binding Name}"/>
         </HierarchicalDataTemplate>
         <DataTemplate DataType="{x:Type m:FinalCategory}">
-            <Label Content="{Binding Name}" Foreground="Green" />
+            <Label Content="{Binding Name}" Foreground="Orchid" />
         </DataTemplate>
     </UserControl.Resources>
-    <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4" ItemsSource="{Binding Categories}">
-        <TreeView.Resources>
-            <!--<HierarchicalDataTemplate DataType="{x:Type m:Category}" ItemsSource="{Binding SubElements}">
+    <StackPanel>
+        <Label 
+            HorizontalAlignment="Center"
+            Background="Transparent"
+            FontSize="16"
+            >Categories</Label>
+        <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4" ItemsSource="{Binding Categories}">
+            <TreeView.Resources>
+                <!--<HierarchicalDataTemplate DataType="{x:Type m:Category}" ItemsSource="{Binding SubElements}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Name}" />
                     <TextBlock Text=" [" Foreground="Blue" />
@@ -31,7 +42,9 @@
                     <TextBlock Text="]" Foreground="Blue" />
                 </StackPanel>
             </HierarchicalDataTemplate>-->
-            
-        </TreeView.Resources>
-    </TreeView>
+
+            </TreeView.Resources>
+        </TreeView>
+    </StackPanel>
+   
 </UserControl>
