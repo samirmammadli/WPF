@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 namespace NVVM_InternetMarket.Model
 {
 
-    abstract class CategoryItem : ObservableObject
+    public abstract class CategoryItem : ObservableObject
     {
         
         protected CategoryItem _parent;

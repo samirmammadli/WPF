@@ -3,7 +3,10 @@
                     xmlns:local="clr-namespace:NVVM_InternetMarket.Resources"
                     xmlns:vm="clr-namespace:NVVM_InternetMarket.ViewModel"
                     xmlns:v="clr-namespace:NVVM_InternetMarket.View">
-    <DataTemplate DataType="{x:Type vm:ProductTreeVM}">
+    <DataTemplate DataType="{x:Type vm:CategoriesVM}">
         <v:ProductsTree/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ItemsListVM}">
+        <v:ItemsListView/>
     </DataTemplate>
 </ResourceDictionary>

@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NVVM_InternetMarket.View"
              xmlns:m ="clr-namespace:NVVM_InternetMarket.Model"
-             xmlns:vm="clr-namespace:NVVM_InternetMarket.ViewModel"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"  Background="#333"
@@ -23,25 +22,27 @@
             <Label Content="{Binding Name}" Foreground="Orchid" />
         </DataTemplate>
     </UserControl.Resources>
-    <StackPanel>
-        <Label 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
             HorizontalAlignment="Center"
             Background="Transparent"
             FontSize="16"
             >Categories</Label>
-        <TreeView Name="viewsTreeView" FontSize="14" Grid.ColumnSpan="4" ItemsSource="{Binding Categories}">
-            <TreeView.Resources>
-                <!--<HierarchicalDataTemplate DataType="{x:Type m:Category}" ItemsSource="{Binding SubElements}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Name}" />
-                    <TextBlock Text=" [" Foreground="Blue" />
-                    <TextBlock Text="{Binding SubElements.Count}" Foreground="Blue" />
-                    <TextBlock Text="]" Foreground="Blue" />
-                </StackPanel>
-            </HierarchicalDataTemplate>-->
-
-            </TreeView.Resources>
+        <TreeView Name="viewsTreeView" FontSize="14" 
+                  Grid.ColumnSpan="4" Grid.Row="1"
+                  ItemsSource="{Binding Categories}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <i:InvokeCommandAction
+                            Command="{Binding SelectItemCommand}"
+                            CommandParameter="{Binding ElementName=myTreeView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </TreeView>
-    </StackPanel>
+    </Grid>
    
 </UserControl>

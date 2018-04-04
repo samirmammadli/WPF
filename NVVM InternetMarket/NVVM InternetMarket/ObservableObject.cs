@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace NVVM_InternetMarket
 {
     [Serializable]
-    class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         [NonSerialized]
         private PropertyChangedEventHandler _PropertyChanged;

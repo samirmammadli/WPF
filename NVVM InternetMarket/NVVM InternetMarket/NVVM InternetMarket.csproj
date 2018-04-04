@@ -63,13 +63,16 @@
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\MockDataService.cs" />
     <Compile Include="Services\ObservableDictionary.cs" />
+    <Compile Include="Services\RelayCommand.cs" />
+    <Compile Include="Services\SelectedCategoryEventArgs.cs" />
+    <Compile Include="ViewModel\ItemsListVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
-    <Compile Include="ViewModel\ProductTreeVM.cs" />
-    <Compile Include="View\CentralControl.xaml.cs">
-      <DependentUpon>CentralControl.xaml</DependentUpon>
+    <Compile Include="ViewModel\CategoriesVM.cs" />
+    <Compile Include="View\ItemsListView.xaml.cs">
+      <DependentUpon>ItemsListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProductsTree.xaml.cs">
-      <DependentUpon>ProductsTree.xaml</DependentUpon>
+    <Compile Include="View\CategoriesView.xaml.cs">
+      <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,11 +102,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CentralControl.xaml">
+    <Page Include="View\ItemsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProductsTree.xaml">
+    <Page Include="View\CategoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
