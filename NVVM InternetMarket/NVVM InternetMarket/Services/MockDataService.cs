@@ -56,7 +56,7 @@ namespace NVVM_InternetMarket.Services
 
         public IEnumerable<Product> GetProducts(CategoryItem category)
         {
-            return null;
+            return products.Where(x => x.Category == category);
         }
 
         public IEnumerable<CategoryItem> GetCategories()
