@@ -12,6 +12,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
+                        <Image Source="{Binding ImagePath}"></Image>
+                        <Label Content="{Binding ImagePath}"/>
                         <Label Content="{Binding BrandName}"/>
                         <Label Content="{Binding Price}" Foreground="Red"/>
                     </StackPanel>

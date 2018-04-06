@@ -50,7 +50,7 @@ namespace NVVM_InternetMarket.Services
             #endregion
 
             #region Products
-            products.Add(new Product { BrandName = "Samsung", Price = 2000, Category = categories[7] });
+            products.Add(new Product("Galaxy S8", "Samsung") {Price = 2000, Category = categories[7] });
             #endregion
         }
 

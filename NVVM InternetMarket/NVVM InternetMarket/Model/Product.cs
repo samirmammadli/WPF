@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace NVVM_InternetMarket.Model
 {
@@ -121,28 +122,18 @@ namespace NVVM_InternetMarket.Model
 
     class Product : ObservableObject
     {
-        
-        protected string _brandName;
-        protected double _price;
-        protected string _imagePath;
-
-        public string ImagePath
+        private string _productName;
+        public string ProductName
         {
-            get { return _imagePath; }
+            get { return _productName; }
             set
             {
-                _imagePath = value;
+                _productName = value;
                 OnPropertyChanged();
             }
         }
-        public Dictionary<string, string> Description { get; set; }
-        private CategoryItem category;
-        public CategoryItem Category
-        {
-            get { return category; }
-            set { category = value; OnPropertyChanged(); }
-        }
 
+        private string _brandName;
         public string BrandName
         {
             get { return _brandName; }
@@ -153,6 +144,7 @@ namespace NVVM_InternetMarket.Model
             }
         }
 
+        private double _price;
         public double Price
         {
             get { return _price; }
@@ -162,5 +154,35 @@ namespace NVVM_InternetMarket.Model
                 OnPropertyChanged();
             }
         }
+
+        private string _imagePath;
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private CategoryItem category;
+        public CategoryItem Category
+        {
+            get { return category; }
+            set { category = value; OnPropertyChanged(); }
+        }
+
+
+        public Product(string productName, string brandName, string image = @"\Data\Product Images\no_image.jpg")
+        {
+            ProductName = productName;
+            BrandName = brandName;
+            ImagePath = Environment.CurrentDirectory + image;
+            MessageBox.Show(ImagePath);
+        }
+
+        
+        public Dictionary<string, string> Description { get; set; } 
     }
 }

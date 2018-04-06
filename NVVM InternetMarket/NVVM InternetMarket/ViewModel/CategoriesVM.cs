@@ -42,6 +42,7 @@ namespace NVVM_InternetMarket.ViewModel
         private void OnCategorySelected()
         {
             CategorySelected?.Invoke(this, new SelectedItemEventArgs { Category = CurrentCategory });
+            
         }
 
         //Commands
