@@ -39,7 +39,7 @@
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction
                             Command="{Binding SelectItemCommand}"
-                            CommandParameter="{Binding ElementName=myTreeView, Path=SelectedItem}"/>
+                            CommandParameter="{Binding ElementName=viewsTreeView, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </TreeView>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using NVVM_InternetMarket.Model;
 using NVVM_InternetMarket.Services;
 
@@ -40,7 +41,7 @@ namespace NVVM_InternetMarket.ViewModel
         public event SelectedCategoryEventHandler CategorySelected;
         private void OnCategorySelected()
         {
-            CategorySelected?.Invoke(this, selectedCategory);
+            CategorySelected?.Invoke(this, SelectedCategory);
         }
 
         //Commands

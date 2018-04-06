@@ -8,11 +8,15 @@
              d:DesignHeight="300" d:DesignWidth="300"
              >
     <Grid>
-        <StackPanel Name="ProductInfoView" Orientation="Horizontal">
-            <TextBlock Text="{Binding }" />
-            <TextBlock Text=" [" Foreground="Blue" />
-            <TextBlock Text="{Binding SubElements.Count}" Foreground="Blue" />
-            <TextBlock Text="]" Foreground="Blue" />
-        </StackPanel>
+        <ListBox Name="ProductInfoView" ItemsSource="{Binding Products}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding BrandName}"/>
+                        <Label Content="{Binding Price}" Foreground="Red"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
