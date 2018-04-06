@@ -64,7 +64,7 @@
     <Compile Include="Services\MockDataService.cs" />
     <Compile Include="Services\ObservableDictionary.cs" />
     <Compile Include="Services\RelayCommand.cs" />
-    <Compile Include="Services\SelectedCategoryEventArgs.cs" />
+    <Compile Include="Services\SelectedItemsEventArgs.cs" />
     <Compile Include="ViewModel\ItemsListVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\CategoriesVM.cs" />
@@ -138,8 +138,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Resource Include="Data\Product Images\no_image.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,9 +54,9 @@ namespace NVVM_InternetMarket.ViewModel
         }
 
 
-        private void CategoriesViewModel_CategorySelected(object sender, CategoryItem category)
+        private void CategoriesViewModel_CategorySelected(object sender, SelectedItemEventArgs item)
         {
-            itemList.LoadProducts(category);
+            itemList.LoadProducts(item.Category);
         }
     }
 }

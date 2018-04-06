@@ -30,18 +30,18 @@ namespace NVVM_InternetMarket.ViewModel
             }
         }
 
-        private CategoryItem selectedCategory;
+        private CategoryItem currentCategory;
 
-        public CategoryItem SelectedCategory
+        public CategoryItem CurrentCategory
         {
-            get { return selectedCategory; }
-            set { selectedCategory = value; }
+            get { return currentCategory; }
+            set { currentCategory = value; }
         }
 
-        public event SelectedCategoryEventHandler CategorySelected;
+        public event SelectedItemEventHandler CategorySelected;
         private void OnCategorySelected()
         {
-            CategorySelected?.Invoke(this, SelectedCategory);
+            CategorySelected?.Invoke(this, new SelectedItemEventArgs { Category = CurrentCategory });
         }
 
         //Commands
@@ -53,7 +53,7 @@ namespace NVVM_InternetMarket.ViewModel
                 return selectItemCommand ?? (selectItemCommand = new RelayCommand(
                     param =>
                     {
-                        SelectedCategory = param as CategoryItem;
+                        CurrentCategory = param as CategoryItem;
                         //AppViewModel.Instance.Navigate("ItemsList");
                         OnCategorySelected();
                     }
