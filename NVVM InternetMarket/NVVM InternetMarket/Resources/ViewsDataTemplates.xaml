@@ -9,4 +9,9 @@
     <DataTemplate DataType="{x:Type vm:ItemsListVM}">
         <v:ItemsListView/>
     </DataTemplate>
+    <Style TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
 </ResourceDictionary>

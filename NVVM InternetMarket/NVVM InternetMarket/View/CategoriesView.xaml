@@ -10,11 +10,6 @@
              d:DesignHeight="300" d:DesignWidth="300"  Background="#333"
              >
     <UserControl.Resources>
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="{StaticResource ControlBackgroundOver}"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
         <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}" DataType="{x:Type m:Category}">
             <Label Content="{Binding Name}"/>
         </HierarchicalDataTemplate>

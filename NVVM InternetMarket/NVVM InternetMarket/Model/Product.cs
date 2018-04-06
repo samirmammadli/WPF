@@ -122,6 +122,15 @@ namespace NVVM_InternetMarket.Model
 
     class Product : ObservableObject
     {
+        
+        static private string _imagesCurrentDirectory = Environment.CurrentDirectory + @"\Products Images\";
+
+        public string ImageCurrentDirectory
+        {
+            get { return _imagesCurrentDirectory; }
+            set { _imagesCurrentDirectory = value; OnPropertyChanged(); }
+        }
+
         private string _productName;
         public string ProductName
         {
@@ -155,13 +164,13 @@ namespace NVVM_InternetMarket.Model
             }
         }
 
-        private string _imagePath;
+        private string _imageName;
         public string ImagePath
         {
-            get { return _imagePath; }
+            get { return _imageName; }
             set
             {
-                _imagePath = value;
+                _imageName = value;
                 OnPropertyChanged();
             }
         }
@@ -174,15 +183,16 @@ namespace NVVM_InternetMarket.Model
         }
 
 
-        public Product(string productName, string brandName, string image = @"\Data\Product Images\no_image.jpg")
+        public Product(string productName, string brandName, string imageName = "")
         {
             ProductName = productName;
             BrandName = brandName;
-            ImagePath = Environment.CurrentDirectory + image;
-            MessageBox.Show(ImagePath);
+            if (imageName == "")
+                ImagePath = _imagesCurrentDirectory + "no_image.jpg";
+            else
+                ImagePath = _imagesCurrentDirectory + imageName;
         }
 
-        
         public Dictionary<string, string> Description { get; set; } 
     }
 }
