@@ -11,14 +11,18 @@
         <ListBox Name="ProductInfoView" ItemsSource="{Binding Products}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImagePath}"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding ImagePath}"
                                Width="120"
                                Height="100"
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Stretch"/>
-                        <StackPanel Margin="2">
-                            
+
+                        <StackPanel Grid.Column="1">
                             <StackPanel  Orientation="Horizontal">
                                 <Label Content="Brand name: "/>
                                 <Label Foreground="Orchid" Content="{Binding BrandName}"/>
@@ -33,9 +37,33 @@
                                 <Label Content="Price: "/>
                                 <Label Foreground="Orchid" Content="{Binding Price}"/>
                             </StackPanel>
-                            
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
+                    <!--<StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImagePath}"
+                               Width="120"
+                               Height="100"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"/>
+
+                        <StackPanel Margin="2">
+                            <StackPanel  Orientation="Horizontal">
+                                <Label Content="Brand name: "/>
+                                <Label Foreground="Orchid" Content="{Binding BrandName}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Product name: "/>
+                                <Label Foreground="Orchid" Content="{Binding ProductName}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Price: "/>
+                                <Label Foreground="Orchid" Content="{Binding Price}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </StackPanel>-->
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
