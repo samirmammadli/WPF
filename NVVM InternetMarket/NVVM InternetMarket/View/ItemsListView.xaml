@@ -12,10 +12,14 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding ImagePath}"></Image>
-                        <StackPanel>
+                        <Image Source="{Binding ImagePath}"
+                               Width="120"
+                               Height="100"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"/>
+                        <StackPanel Margin="2">
                             
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel  Orientation="Horizontal">
                                 <Label Content="Brand name: "/>
                                 <Label Foreground="Orchid" Content="{Binding BrandName}"/>
                             </StackPanel>

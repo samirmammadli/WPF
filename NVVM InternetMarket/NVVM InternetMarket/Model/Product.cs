@@ -164,13 +164,16 @@ namespace NVVM_InternetMarket.Model
             }
         }
 
-        private string _imageName;
+        private string _imagePath;
         public string ImagePath
         {
-            get { return _imageName; }
+            get { return _imagePath; }
             set
             {
-                _imageName = value;
+                if (value == "")
+                    _imagePath = _imagesCurrentDirectory + "no_image.png";
+                else
+                    _imagePath = _imagesCurrentDirectory + value;
                 OnPropertyChanged();
             }
         }
@@ -187,10 +190,7 @@ namespace NVVM_InternetMarket.Model
         {
             ProductName = productName;
             BrandName = brandName;
-            if (imageName == "")
-                ImagePath = _imagesCurrentDirectory + "no_image.jpg";
-            else
-                ImagePath = _imagesCurrentDirectory + imageName;
+            ImagePath = imageName;
         }
 
         public Dictionary<string, string> Description { get; set; } 
