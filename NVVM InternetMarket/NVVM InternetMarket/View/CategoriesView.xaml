@@ -19,12 +19,11 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0"
             HorizontalAlignment="Center"
-            Background="Transparent"
             FontSize="16"
             >Categories</Label>
         <TreeView Name="viewsTreeView" FontSize="14" 

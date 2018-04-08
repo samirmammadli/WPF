@@ -5,10 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NVVM_InternetMarket.View"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="300" d:DesignWidth="300" Background="#333"
              >
     <Grid>
-        <ListBox Name="ProductInfoView" ItemsSource="{Binding Products}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" Grid.Row="0" HorizontalAlignment="Center">Aviable Products</Label>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0">Seacrh by:</Label>
+            <WrapPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                <Label >Brand name: </Label>
+                <TextBox Margin="5" Width="200"></TextBox>
+                <Label >Product name:</Label>
+                <TextBox Margin="5" Width="200"></TextBox>
+                <Label >Price: </Label>
+                <TextBox Margin="5" Width="200"></TextBox>
+            </WrapPanel>
+        </Grid>
+        <ListBox Grid.Row="2" Name="ProductInfoView" ItemsSource="{Binding Products}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
