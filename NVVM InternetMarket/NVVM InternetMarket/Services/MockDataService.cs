@@ -51,8 +51,8 @@ namespace NVVM_InternetMarket.Services
 
             #region Products
             //Samsung
-            products.Add(new Product("Galaxy S8", "Samsung") {Price = 2000, Category = categories[7], ImagePath= "samsung_galaxy_s8.png" });
-            products.Add(new Product("Galaxy Note 9", "Samsung") { Price = 2200, Category = categories[7] });
+            products.Add(new Product("Galaxy S8", "Samsung") {Price = 2000, Category = categories[7], ImagePath = "samsung_galaxy_s8.png" });
+            products.Add(new Product("Galaxy Note 9", "Samsung") { Price = 2200, Category = categories[7], ImagePath = "samsung_galaxy_note9.png" });
             //Apple
             products.Add(new Product("Iphone 8", "Apple") { Price = 1800, Category = categories[8] });
             products.Add(new Product("Iphone X", "Apple") { Price = 2100, Category = categories[8] });
