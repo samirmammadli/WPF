@@ -12,8 +12,13 @@
             <ColumnDefinition Width="*" MaxWidth="250"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <ContentControl Grid.Column="0" Content="{Binding LeftViewModel}"/>
-        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.ColumnSpan="2" Grid.Row="0" Content="{Binding UpperViewModel}"/>
+        <ContentControl Grid.Column="0" Grid.Row="1" Content="{Binding LeftViewModel}"/>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
 

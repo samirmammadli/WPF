@@ -17,6 +17,7 @@ namespace NVVM_InternetMarket.ViewModel
 
         private CategoriesVM productsTree;
         private ItemsListVM itemList;
+        private MenuVM appMenu;
 
         static public MainWindowVM Instance { get; set; } = new MainWindowVM();
 
@@ -36,20 +37,26 @@ namespace NVVM_InternetMarket.ViewModel
 
         public object CurrentViewModel { get; set; }
 
+        public object UpperViewModel { get; set; }
+
 
         private MainWindowVM()
         {
             productsTree = new CategoriesVM();
             itemList = new ItemsListVM();
+            appMenu = new MenuVM();
             ViewModels = new Dictionary<string, object>
             {
                 {"ProductsTree", productsTree },
-                {"ItemsList", itemList }
+                {"ItemsList", itemList },
+                {"AppMenu", appMenu }
             };
             
 
             LeftViewModel = ViewModels["ProductsTree"];
             CurrentViewModel = ViewModels["ItemsList"];
+            UpperViewModel = ViewModels["AppMenu"];
+
             productsTree.CategorySelected += CategoriesViewModel_CategorySelected;
         }
 
