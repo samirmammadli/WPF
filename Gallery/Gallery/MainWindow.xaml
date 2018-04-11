@@ -78,11 +78,11 @@
                 <ColumnDefinition MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" ItemHeight="40" ItemWidth="50">
-                <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5">OK</Button>
-                <Button Name="btnPrevious" Click="btnPrevious_Click" Margin="5">OK</Button>
-                <ToggleButton Name="btnPlay" Click="btnPlay_Click" Margin="5" Content="#10074"></ToggleButton>
-                <Button Name="btnNext" Click="btnNext_Click" Margin="5">OK</Button>
-                <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5">OK</Button>
+                <Button Name="btnRotateLeft" Click="btnRotateLeft_Click" Margin="5" FontSize="20">↪️</Button>
+                <Button Name="btnPrevious" Click="btnPrevious_Click" Margin="5" FontSize="20">⏮️</Button>
+                <ToggleButton Name="btnPlay" Click="btnPlay_Click" Margin="5" FontSize="20">⏯️</ToggleButton>
+                <Button Name="btnNext" Click="btnNext_Click" Margin="5" FontSize="20">⏭️</Button>
+                <Button Name="btnRotateRight" Click="btnRotateRight_Click" Margin="5" FontSize="20">↩️</Button>
             </WrapPanel>
             <GroupBox Grid.Column="4">
                 <GroupBox.Header>
