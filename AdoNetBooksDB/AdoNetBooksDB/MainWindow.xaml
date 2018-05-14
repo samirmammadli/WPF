@@ -23,5 +23,13 @@
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" MinWidth="50"/>
             </DataGrid.Columns>
         </DataGrid>
+        <GroupBox Header="Search for books" Grid.Row="0" Grid.Column="1">
+            <StackPanel>
+                <TextBox Margin="3">Салат Оливье</TextBox>
+                <TextBox Margin="3">Котлеты по-киевски</TextBox>
+                <TextBox Margin="3">Селедка под шубой</TextBox>
+                <Button Width="80" Margin="3">Заказать</Button>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>
