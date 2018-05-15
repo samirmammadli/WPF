@@ -13,8 +13,12 @@
             <TextBox></TextBox>
             <Label>Password:</Label>
             <PasswordBox></PasswordBox>
-            <Button Width="80" Margin="15,15,15,0">Login</Button>
-            <Button BorderThickness="0" Background="Transparent" Foreground="Blue" Width="80" Margin="15">Registration</Button>
+            <Button Width="80" Margin="15,15,15,15">Login</Button>
+            <TextBlock HorizontalAlignment="Center">
+                <Hyperlink NavigateUri="{Binding Path}">
+                    <TextBlock Text="Registration"/>
+                </Hyperlink>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>
