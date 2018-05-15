@@ -58,6 +58,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\PasswordHelper.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="View\AppView.xaml.cs">
@@ -95,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\AppView.xaml">
