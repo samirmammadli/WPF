@@ -58,6 +58,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\User.cs" />
     <Compile Include="Services\PasswordEncrypt.cs" />
     <Compile Include="Services\PasswordHelper.cs" />
     <Compile Include="Tools\ObservableObject.cs" />
@@ -97,9 +98,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="View\AppView.xaml">
       <SubType>Designer</SubType>
