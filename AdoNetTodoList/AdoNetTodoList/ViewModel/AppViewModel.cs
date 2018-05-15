@@ -9,6 +9,10 @@ namespace AdoNetTodoList.ViewModel
 {
     class AppViewModel : ObservableObject
     {
-
+        public LogInViewModel Login { get; set; }
+        public AppViewModel()
+        {
+            Login = new LogInViewModel();
+        }
     }
 }
