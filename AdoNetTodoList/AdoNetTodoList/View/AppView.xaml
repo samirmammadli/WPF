@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Todo List"
         SizeToContent="WidthAndHeight"
-        MinHeight="100" MinWidth="300">
+        MinHeight="100" MinWidth="300"
+        ResizeMode="NoResize">
     <Grid>
         <local:LogInView/>
     </Grid>

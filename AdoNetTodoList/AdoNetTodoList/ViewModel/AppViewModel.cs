@@ -9,5 +9,6 @@ namespace AdoNetTodoList.ViewModel
 {
     class AppViewModel : ObservableObject
     {
+
     }
 }
