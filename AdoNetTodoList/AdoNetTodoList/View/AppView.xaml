@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdoNetTodoList.View"
         mc:Ignorable="d"
-        Title="AppView" Height="300" Width="300">
+        Title="Todo List"
+        SizeToContent="WidthAndHeight"
+        MinHeight="100" MinWidth="300">
     <Grid>
         <local:LogInView/>
     </Grid>
