@@ -59,8 +59,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\AppViewModel.cs" />
+    <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="View\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LogInView.xaml.cs">
+      <DependentUpon>LogInView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\AppView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogInView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
