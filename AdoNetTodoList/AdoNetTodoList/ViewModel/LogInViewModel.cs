@@ -15,7 +15,7 @@ namespace AdoNetTodoList.ViewModel
         public string Username
         {
             get { return username; }
-            set { username = value; }
+            set { Set(ref username, value); }
         }
 
         private RelayCommand login;
