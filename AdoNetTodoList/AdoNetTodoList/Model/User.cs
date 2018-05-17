@@ -1,5 +1,4 @@
-﻿using AdoNetTodoList.Tools;
-using System;
+﻿using System;
 
 namespace AdoNetTodoList.Model
 {
