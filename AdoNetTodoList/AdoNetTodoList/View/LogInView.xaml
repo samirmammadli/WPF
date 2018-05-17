@@ -15,7 +15,7 @@
             <Label>E-mail:</Label>
             <xctk:WatermarkTextBox Watermark="Login or Email"/>
             <Label>Password:</Label>
-            <xctk:WatermarkPasswordBox Watermark="Password"></xctk:WatermarkPasswordBox>
+            <xctk:WatermarkPasswordBox AcceptsReturn="True" Watermark="Password"/>
             <Button Width="80" Margin="15,15,15,10">Login</Button>
             <TextBlock HorizontalAlignment="Center">
                 <Hyperlink NavigateUri="{Binding Path}">
