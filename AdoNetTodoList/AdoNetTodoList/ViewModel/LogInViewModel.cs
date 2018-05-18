@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,17 @@ namespace AdoNetTodoList.ViewModel
 
         public string Username
         {
-            get { return username; }
-            set { Set(ref username, value); }
+            get => username;
+            set => Set(ref username, value);
         }
 
-        private RelayCommand login;
-        public RelayCommand Login
+        private RelayCommand<string> login;
+        public RelayCommand<string> Login
         {
             get
             {
-                return login ?? (login = new RelayCommand(
-                    param => MessageBox.Show(Username)));
+                return login ?? (login = new RelayCommand<string>(
+                    param => MessageBox.Show(param)));
             }
         }
     }

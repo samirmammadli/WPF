@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace AdoNetTodoList.Model
 {
@@ -8,35 +9,35 @@ namespace AdoNetTodoList.Model
         public int Id
         {
             get { return id; }
-            set { id = value; OnPropertyChanged(); }
+            set { Set(ref id, value); }
         }
 
         private string firstName;
         public string FirstName
         {
             get { return firstName; }
-            set { firstName = value; OnPropertyChanged(); }
+            set { Set(ref firstName, value); }
         }
 
         private string surname;
         public string Surname
         {
             get { return surname; }
-            set { surname = value; OnPropertyChanged(); }
+            set { Set(ref surname, value); }
         }
 
         private DateTime regDate;
         public DateTime RegDate
         {
             get { return regDate; }
-            set { regDate = value; OnPropertyChanged(); }
+            set { Set(ref regDate, value); }
         }
 
         private string email;
         public string Email
         {
             get { return email; }
-            set { email = value; OnPropertyChanged(); }
+            set { Set(ref email, value); }
         }
     }
 }
