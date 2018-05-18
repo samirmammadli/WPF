@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace AdoNetTodoList.ViewModel
 {
-    class LogInViewModel : ViewModelBase
+    public class LogInViewModel : ViewModelBase
     {
         private string username;
 
