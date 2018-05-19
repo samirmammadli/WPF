@@ -8,6 +8,6 @@ namespace AdoNetTodoList.Navigation
 {
     enum VM
     {
-
+        Login
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace AdoNetTodoList.ViewModel
 {
-    class AppViewModel
+    class AppViewModel : ViewModelBase
     {
-        public LogInViewModel Login { get; set; }
-        public AppViewModel()
+        public ViewModelBase CurrentVM { get; set; }
+        private INavigationService navigationService;
+        public AppViewModel(INavigationService service)
         {
-            Login = new LogInViewModel();
+            this.navigationService = service;
+
+            Messenger.Default.Register<ViewModelBase>(this,
+                param => CurrentVM = param
+            );
         }
     }
 }

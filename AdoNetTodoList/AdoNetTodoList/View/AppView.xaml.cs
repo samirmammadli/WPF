@@ -23,7 +23,6 @@ namespace AdoNetTodoList.View
         public AppView()
         {
             InitializeComponent();
-            DataContext = new AppViewModel();
         }
     }
 }

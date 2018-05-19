@@ -17,6 +17,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <ContentControl Content="{Binding Login}"></ContentControl>
+        <ContentControl Content="{Binding CurrentVM}"></ContentControl>
     </Grid>
 </Window>

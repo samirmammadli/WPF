@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdoNetTodoList.Tools;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,8 +16,16 @@ namespace AdoNetTodoList
     {
         public App()
         {
-            var mainWindow = new View.AppView();
-            mainWindow.Show();
+            try
+            {
+                var app = new View.AppView();
+                app.DataContext = new ViewModelLoactor().AppViewModel;
+                app.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
