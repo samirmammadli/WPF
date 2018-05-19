@@ -14,8 +14,9 @@ namespace AdoNetTodoList.Tools
         //TODO: Add VMs 
         public AppViewModel AppViewModel { get; }
         public LogInViewModel LogInViewModel { get; }
+        static public ViewModelLoactor Instance { get; private set; } = new ViewModelLoactor();
 
-        public ViewModelLoactor()
+        private ViewModelLoactor()
         {
             try
             {
@@ -32,6 +33,7 @@ namespace AdoNetTodoList.Tools
                     //TODO: Resolve all VMs
                     AppViewModel = scope.Resolve<AppViewModel>();
                     LogInViewModel = scope.Resolve<LogInViewModel>();
+
                 }
 
                 //TODO: Add VMs to navigation

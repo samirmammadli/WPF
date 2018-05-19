@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using AdoNetTodoList.Tools;
 
 
 namespace AdoNetTodoList.View
@@ -11,6 +12,7 @@ namespace AdoNetTodoList.View
         public LogInView()
         {
             InitializeComponent();
+            ViewModelLoactor.Instance.LogInViewModel.Pb = this.PwdTb;
         }
     }
 }

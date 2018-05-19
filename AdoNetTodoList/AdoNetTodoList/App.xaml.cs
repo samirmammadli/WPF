@@ -19,7 +19,7 @@ namespace AdoNetTodoList
             try
             {
                 var app = new View.AppView();
-                app.DataContext = new ViewModelLoactor().AppViewModel;
+                app.DataContext = ViewModelLoactor.Instance.AppViewModel;
                 app.ShowDialog();
             }
             catch (Exception ex)

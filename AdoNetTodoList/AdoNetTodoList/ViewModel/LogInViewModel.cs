@@ -11,8 +11,9 @@ namespace AdoNetTodoList.ViewModel
 {
     public class LogInViewModel : ViewModelBase
     {
-        private string username;
+        public Xceed.Wpf.Toolkit.WatermarkPasswordBox Pb { get; set; }
 
+        private string username;
         public string Username
         {
             get => username;
@@ -25,7 +26,7 @@ namespace AdoNetTodoList.ViewModel
             get
             {
                 return login ?? (login = new RelayCommand<string>(
-                    param => MessageBox.Show(param)));
+                    param => MessageBox.Show(Pb.Password)));
             }
         }
     }
