@@ -1,16 +1,16 @@
 {
-  "defaultAssembly": "WpfMvvm",
+  "defaultAssembly": "AdoNetTodoList",
   "components": [
-    { "type": "WpfMvvm.ViewModels.AppViewModel" },
-    { "type": "WpfMvvm.ViewModels.TestViewModel" },
-    {
-      "type": "WpfMvvm.Services.TestServiceOne",
-      "services": [
-        {
-          "type": "WpfMvvm.Services.ITestService"
-        }
-      ]
-    }
+    { "type": "AdoNetTodoList.ViewModel.AppViewModel" },
+    { "type": "AdoNetTodoList.ViewModel.LogInViewModel" }
+    //{
+    //  "type": "WpfMvvm.Services.TestServiceOne",
+    //  "services": [
+    //    {
+    //      "type": "WpfMvvm.Services.ITestService"
+    //    }
+    //  ]
+    //}
   ]
 }
 
