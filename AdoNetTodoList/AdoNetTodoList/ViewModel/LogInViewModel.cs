@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using AdoNetTodoList.Services;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,23 @@ namespace AdoNetTodoList.ViewModel
             set => Set(ref username, value);
         }
 
-        private RelayCommand<string> login;
-        public RelayCommand<string> Login
+        private RelayCommand<string> loginCmd;
+        public RelayCommand<string> LoginCmd
         {
             get
             {
-                return login ?? (login = new RelayCommand<string>(
+                return loginCmd ?? (loginCmd = new RelayCommand<string>(
                     param => MessageBox.Show(Pb.Password)));
+            }
+        }
+
+        private void Login(object parameter)
+        {
+            var passwordContainer = parameter as IHavePassword;
+            if (passwordContainer != null)
+            {
+                var secureString = passwordContainer.Password;
+                PasswordInVM = ConvertToUnsecureString(secureString);
             }
         }
     }

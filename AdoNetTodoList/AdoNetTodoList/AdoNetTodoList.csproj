@@ -130,10 +130,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ExtensionMethods\SecureStringToString.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Navigation\VM.cs" />
+    <Compile Include="Services\IHavePassword.cs" />
     <Compile Include="Services\PasswordEncrypt.cs" />
     <Compile Include="Tools\ViewModelLocator.cs" />
     <Compile Include="ViewModel\AppViewModel.cs" />
