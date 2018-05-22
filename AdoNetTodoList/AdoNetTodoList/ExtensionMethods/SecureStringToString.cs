@@ -10,7 +10,7 @@ namespace AdoNetTodoList.ExtensionMethods
 {
     static class Extensions
     {
-        static private string ConvertToUnsecureString(this SecureString securePassword)
+        public static string ConvertToUnsecureString(this SecureString securePassword)
         {
             if (securePassword == null)
             {
