@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="240" d:DesignWidth="280"
              MaxHeight="240" MaxWidth="280"
+             Name="this"
              >
     <Grid>
         <StackPanel Margin="40" Orientation="Vertical">
@@ -16,7 +17,7 @@
             <xctk:WatermarkTextBox Text="{Binding Username}" Watermark="Login or Email"/>
             <Label>Password:</Label>
             <xctk:WatermarkPasswordBox x:Name="PwdTb" AcceptsReturn="True" Watermark="Password"/>
-            <Button Command="{Binding Login}" Width="80" Margin="15,15,15,10">Login</Button>
+            <Button Command="{Binding LoginCmd}" CommandParameter="{Binding ElementName=this}" Width="80" Margin="15,15,15,10">Login</Button>
             <TextBlock HorizontalAlignment="Center">
                 <Hyperlink NavigateUri="{Binding Path}">
                     <i:Interaction.Triggers>

@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdoNetTodoList.ExtensionMethods;
 using System.Windows;
 
 namespace AdoNetTodoList.ViewModel
 {
+    
+
     public class LogInViewModel : ViewModelBase
     {
         public Xceed.Wpf.Toolkit.WatermarkPasswordBox Pb { get; set; }
@@ -21,23 +24,15 @@ namespace AdoNetTodoList.ViewModel
             set => Set(ref username, value);
         }
 
-        private RelayCommand<string> loginCmd;
-        public RelayCommand<string> LoginCmd
-        {
-            get
-            {
-                return loginCmd ?? (loginCmd = new RelayCommand<string>(
-                    param => MessageBox.Show(Pb.Password)));
-            }
-        }
+        private RelayCommand<object> loginCmd;
+        public RelayCommand<object> LoginCmd => loginCmd ?? (loginCmd = new RelayCommand<object>(Login));
 
         private void Login(object parameter)
         {
-            var passwordContainer = parameter as IHavePassword;
-            if (passwordContainer != null)
+            if (parameter is IHavePassword passwordContainer)
             {
                 var secureString = passwordContainer.Password;
-                PasswordInVM = ConvertToUnsecureString(secureString);
+                MessageBox.Show(secureString.ConvertToUnsecureString());
             }
         }
     }

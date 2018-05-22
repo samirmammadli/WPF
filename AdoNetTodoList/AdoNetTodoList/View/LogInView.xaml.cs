@@ -1,4 +1,5 @@
-﻿using System.Security;
+﻿using System;
+using System.Security;
 using System.Windows.Controls;
 using AdoNetTodoList.Services;
 using AdoNetTodoList.Tools;
@@ -14,9 +15,8 @@ namespace AdoNetTodoList.View
         public LogInView()
         {
             InitializeComponent();
-            ViewModelLoactor.Instance.LogInViewModel.Pb = this.PwdTb;
         }
 
-        public SecureString Password => throw new System.NotImplementedException();
+        public SecureString Password => PwdTb.SecurePassword;
     }
 }
