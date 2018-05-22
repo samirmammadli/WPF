@@ -11,29 +11,24 @@ using System.Windows;
 
 namespace AdoNetTodoList.ViewModel
 {
-    
-
     public class LogInViewModel : ViewModelBase
     {
         public Xceed.Wpf.Toolkit.WatermarkPasswordBox Pb { get; set; }
 
-        private string username;
+        private string _username;
         public string Username
         {
-            get => username;
-            set => Set(ref username, value);
+            get => _username;
+            set => Set(ref _username, value);
         }
 
-        private RelayCommand<object> loginCmd;
-        public RelayCommand<object> LoginCmd => loginCmd ?? (loginCmd = new RelayCommand<object>(Login));
+        private RelayCommand<IHavePassword> _loginCmd;
+        public RelayCommand<IHavePassword> LoginCmd => _loginCmd ?? (_loginCmd = new RelayCommand<IHavePassword>(Login));
 
-        private void Login(object parameter)
+        private void Login(IHavePassword passwordContainer)
         {
-            if (parameter is IHavePassword passwordContainer)
-            {
-                var secureString = passwordContainer.Password;
-                MessageBox.Show(secureString.ConvertToUnsecureString());
-            }
+            var secureString = passwordContainer.Password;
+            MessageBox.Show(secureString.ConvertToUnsecureString());
         }
     }
 }
